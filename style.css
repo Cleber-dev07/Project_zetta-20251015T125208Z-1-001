@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+
+h1{
+   font-family: "Rajdhani", sans-serif;
+   color: #00BFFF;
+   font-weight: 700;
+   text-shadow: 0 0 5px #00BFFF;
+   font-size: 38px;
+   margin: 0;
+}
+
+.primeira-letra{
+    color: #00DFFF;
+}
+
+body{
+    background-color: black;
+    
+}
+.position{
+    position: relative;
+     margin-left: 45px;
+     margin-top: -15px;
+    color: orange;
+    font-size: 15;
+}
+.inicio {
+    background-color: #0A192F; 
+    width: 90%; 
+    max-width: 1000px; /* Aumentei um pouco o limite máximo */
+    border: 1px solid orange;
+    
+    /* CENTRALIZAÇÃO E ESPAÇAMENTO */
+    margin: 10px auto; /* 10px em cima/baixo, 'auto' nas laterais para centralizar */
+    padding: 8px 15px; /* Padding vertical um pouco maior para respiro */
+    
+    /* FLEXBOX */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o título e a barra */
+    justify-content: space-between; 
+    height: auto; 
+    
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+}
+.detalhe{
+   position: absolute;
+    top: 22px; 
+    left: 296px;
+
+}
+.barra-pesquisa input {
+    /* Aparência do campo de texto */
+    padding: 5px 10px;
+    width: 250px;
+    border: 1px solid #00BFFF; /* Borda azul neon */
+    border-right: none; /* Remove a borda direita para se fundir com o botão */
+    background-color: #050E1A; /* Fundo muito escuro */
+    color: #00DFFF; /* Cor do texto digitado */
+    font-family: "Rajdhani", sans-serif;
+    font-size: 16px;
+    outline: none; /* Remove o outline padrão ao clicar */
+    box-shadow: 0 0 5px rgba(0, 191, 255, 0.3); /* Efeito neon sutil */
+    transition: box-shadow 0.3s;
+}
+
+.barra-pesquisa input:focus {
+    /* Efeito ao focar no campo */
+    box-shadow: 0 0 10px #00BFFF, 0 0 15px rgba(0, 191, 255, 0.5); /* Neon mais intenso */
+}
+
+.barra-pesquisa input::placeholder {
+    /* Estilo do texto de exemplo */
+    color: #5B7A98; /* Cinza suave */
+    opacity: 0.8;
+}
+
+.barra-pesquisa button {
+    /* Estilo do botão de Pesquisa */
+    padding: 5px 10px;
+    border: 1px solid #00BFFF;
+    border-left: none; /* Remove a borda esquerda para se fundir com o input */
+    background-color: #00BFFF; /* Cor de fundo principal do botão */
+    color: #0A192F; /* Texto ou ícone em cor escura */
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.barra-pesquisa button:hover {
+
+    background-color: #00DFFF;
+    box-shadow: 0 0 10px #00DFFF;
+}
+
+.secao-downloads {
+    width: 90%; 
+    max-width: 500px; 
+    
+    /* PROPRIEDADE CHAVE PARA ALINHAR À ESQUERDA */
+    margin: 40px auto 40px 30px; 
+    
+    /* PROPRIEDADES DE COLUNA (MANTIDAS) */
+    display: flex;
+    flex-direction: column; 
+    align-items: stretch;
+    
+    gap: 15px; 
+}
+
+/* ESTILO DE CADA BLOCO INDIVIDUAL */
+.bloco-download {
+    flex-basis: 30%; /* Cada bloco ocupa cerca de 30% da largura do contêiner */
+    min-width: 250px; /* Garante que os blocos não fiquem muito estreitos */
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #00BFFF; /* Borda Neon Azul */
+    background-color: rgba(10, 25, 47, 0.7); /* Fundo semi-transparente escuro */
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Sombra Neon */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.bloco-download:hover {
+    transform: translateY(-5px); /* Levanta o bloco */
+    box-shadow: 0 5px 20px rgba(0, 191, 255, 0.8), 0 0 30px orange; /* Brilho mais intenso */
+}
+
+/* LINKS DE DOWNLOAD */
+.link-download {
+    display: inline-block; /* Permite aplicar padding e margem */
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: orange; /* Botão de destaque */
+    color: #0A192F; /* Cor de texto escura */
+    font-weight: 700;
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.link-download:hover {
+    background-color: #FFD700; /* Dourado/Amarelo mais claro no hover */
+}
