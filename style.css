@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Protest+Guerrilla&family=Rampart+One&display=swap');
 
 h1{
    font-family: "Rajdhani", sans-serif;
@@ -8,6 +9,10 @@ h1{
    font-size: 38px;
    margin: 0;
 }
+h3{
+    color: azure;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
 .primeira-letra{
     color: #00DFFF;
@@ -16,13 +21,6 @@ h1{
 body{
     background-color: black;
     
-}
-.position{
-    position: relative;
-     margin-left: 45px;
-     margin-top: -15px;
-    color: orange;
-    font-size: 15;
 }
 .inicio {
     background-color: #0A192F; 
@@ -42,6 +40,15 @@ body{
     
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
 }
+.position{
+    position: relative;
+     margin-left: 45px;
+     margin-top: -15px;
+    color: orange;
+    font-size: 15;
+}
+
+
 .detalhe{
    position: absolute;
     top: 22px; 
@@ -118,6 +125,7 @@ body{
     background-color: rgba(10, 25, 47, 0.7); /* Fundo semi-transparente escuro */
     box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Sombra Neon */
     transition: transform 0.3s, box-shadow 0.3s;
+    
 }
 
 /* EFEITO AO PASSAR O MOUSE */
@@ -138,7 +146,20 @@ body{
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-
 .link-download:hover {
     background-color: #FFD700; /* Dourado/Amarelo mais claro no hover */
+}
+.textowhite{
+    color: white;
+    font-size: 18px;
+    margin-bottom: 0px; /* Define um espaço de 5 pixels abaixo de cada parágrafo */
+    line-height: 1.2; /* Valor 1.0 é o mínimo. 1.2 é um valor mais justo. */
+}
+
+.explicacao{
+    width: 90vmin;
+    height: 80vmin;
+    background-color: #0A192F; 
+    border: 1px solid orange;
+    margin: 0 auto;
 }
