@@ -3,96 +3,223 @@
 
 /* --- TIPOGRAFIA --- */
 h1{
-font-family: "Rajdhani", sans-serif;
-color: #00BFFF;
-font-weight: 700;
-text-shadow: 0 0 5px #00BFFF;
-font-size: 38px;
-margin: 0;
+    font-family: "Rajdhani", sans-serif;
+    color: #00BFFF;
+    font-weight: 700;
+    text-shadow: 0 0 5px #00BFFF;
+    font-size: 38px;
+    margin: 0;
 }
 h3{
- color: azure;
- font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: azure;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .primeira-letra{
- color: #00DFFF;
+    color: #00DFFF;
 }
 .textowhite{
- color: white;
- font-size: 18px;
- margin-bottom: 0px;
- line-height: 1.2;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 0px;
+    line-height: 1.2;
 }
 
 /* --- LAYOUT GERAL E HEADER --- */
 body{
- background-color: black;
+    background-color: black;
 }
 .inicio {
- background-color: #0A192F; 
- width: 90%; 
- max-width: 1000px;
- border: 1px solid orange;
- 
- /* CENTRALIZAÇÃO */
- margin: 10px auto; 
- padding: 8px 15px;
- 
- display: flex;
- align-items: center;
- justify-content: space-between;
- height: auto;
- 
- box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+    background-color: #0A192F;
+    width: 90%;
+    max-width: 1000px;
+    border: 1px solid orange;
+
+    /* CENTRALIZAÇÃO */
+    margin: 10px auto 0; /* Ajusta a margem inferior para o conteúdo */
+    padding: 8px 15px;
+
+    /* Configuração Flexbox para o Header */
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    height: auto;
+    gap: 15px; 
+
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
 }
 
+/* Mantém o Zetta em posição relativa para o efeito de sobreposição */
 .position{
- position: relative; 
- margin-left: 45px; 
- margin-top: -15px;
- color: orange;
- font-size: 30px; 
+    position: relative;
+    margin-left: 45px;
+    margin-top: -15px;
+    color: orange;
+    font-size: 30px;
+}
+
+/* --- CATÁLOGO E FILTRO (Novos Estilos) --- */
+.catalogo {
+    display: flex;
+    gap: 30px; /* Aumentado para melhor espaçamento dos botões de filtro */
+    margin: 0 30px; 
+    padding: 5px 0;
+    align-items: center;
+}
+
+.item-catalogo {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s, border-bottom 0.2s;
+    padding-bottom: 5px; /* Espaço para a borda ativa */
+}
+
+.item-catalogo:hover {
+    transform: scale(1.05); /* Efeito de zoom mais sutil no hover */
+}
+
+.icone {
+    font-size: 24px;
+    color: #00BFFF; 
+    text-shadow: 0 0 5px #00BFFF;
+    margin-bottom: 3px;
+}
+
+.texto-icone {
+    font-family: "Rajdhani", sans-serif;
+    font-size: 12px;
+    color: #5B7A98; 
+    font-weight: 400;
+}
+
+.item-catalogo:hover .texto-icone {
+    color: #00DFFF; 
+}
+
+/* ESTILO PARA O ITEM DO CATÁLOGO ATIVO (Filtro selecionado) */
+.item-catalogo.ativo {
+    border-bottom: 2px solid orange; /* Linha laranja para indicar que está ativo */
+    
+}
+
+.item-catalogo.ativo .icone {
+    color: orange;
+    text-shadow: 0 0 5px orange;
+}
+
+.item-catalogo.ativo .texto-icone {
+    color: orange; 
+    font-weight: 700;
+    text-shadow: 0 0 3px rgba(255, 165, 0, 0.5);
 }
 
 /* --- BARRA DE PESQUISA --- */
 .barra-pesquisa input {
- padding: 5px 10px;
- width: 250px;
- border: 1px solid #00BFFF;
- border-right: none;
- background-color: #050E1A;
- color: #00DFFF;
- font-family: "Rajdhani", sans-serif;
- font-size: 16px;
- outline: none;
- box-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
- transition: box-shadow 0.3s;
+    padding: 5px 10px;
+    width: 250px;
+    border: 1px solid #00BFFF;
+    border-right: none;
+    background-color: #050E1A;
+    color: #00DFFF;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
+    transition: box-shadow 0.3s;
 }
 
 .barra-pesquisa input:focus {
- box-shadow: 0 0 10px #00BFFF, 0 0 15px rgba(0, 191, 255, 0.5);
+    box-shadow: 0 0 10px #00BFFF, 0 0 15px rgba(0, 191, 255, 0.5);
 }
 
 .barra-pesquisa input::placeholder {
- color: #5B7A98;
- opacity: 0.8;
+    color: #5B7A98;
+    opacity: 0.8;
 }
 
 .barra-pesquisa button {
- padding: 5px 10px;
- border: 1px solid #00BFFF;
- border-left: none;
- background-color: #00BFFF;
- color: #0A192F;
- font-size: 16px;
- font-weight: 700;
- cursor: pointer;
- transition: background-color 0.3s, box-shadow 0.3s;
+    padding: 5px 10px;
+    border: 1px solid #00BFFF;
+    border-left: none;
+    background-color: #00BFFF;
+    color: #0A192F;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .barra-pesquisa button:hover {
- background-color: #00DFFF;
- box-shadow: 0 0 10px #00DFFF;
+    background-color: #00DFFF;
+    box-shadow: 0 0 10px #00DFFF;
+}
+
+/* --- CONTEÚDO PRINCIPAL (Alvo do Filtro) --- */
+.main-content {
+    background-color: #050E1A; 
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 10px; /* Conecta com o header acima */
+    padding: 20px;
+    border: 1px solid #1f375a;
+    border-top: none; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.conteudo h3 {
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+/* --- RESPONSIVIDADE --- (Ajuste para telas menores) */
+@media (max-width: 768px) {
+    .inicio {
+        flex-direction: column; 
+        height: auto;
+        padding: 15px;
+    }
+
+    .header-conteudo {
+        width: 100%;
+        display: flex;
+        justify-content: center; 
+        margin-bottom: 10px;
+    }
+
+    .titulo-texto {
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Ajuste para o título "Zetta" em telas menores */
+    .position{
+        margin-left: 0; 
+        margin-top: -10px; 
+    }
+
+    .catalogo {
+        width: 100%;
+        justify-content: space-around; 
+        margin: 10px 0;
+        gap: 15px;
+    }
+
+    .barra-pesquisa {
+        width: 100%;
+        display: flex;
+    }
+
+    .barra-pesquisa input {
+        flex-grow: 1; 
+        width: auto;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
 }
 
 
