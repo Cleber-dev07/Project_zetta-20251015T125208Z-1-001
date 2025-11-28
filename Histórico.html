@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico - Project Zetta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#00BFFF',
+                        'neon-light': '#00DFFF',
+                        'dark-bg': '#0A192F',
+                        'darkest-bg': '#050E1A',
+                        'highlight-orange': 'orange',
+                    },
+                    fontFamily: {
+                        'rajdhani': ['Rajdhani', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&family=Inter:wght@400;700&display=swap');
+        body {
+            background-color: black;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for neon glow */
+        .neon-shadow-blue {
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+        }
+        .neon-border-blue {
+            border: 1px solid #00BFFF;
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+            border-color: #00DFFF;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-100 p-4 md:p-8 flex flex-col">
+
+    <header id="main-header" class="bg-dark-bg neon-border-blue neon-shadow-blue p-3 md:p-4 mb-8 flex justify-between items-center rounded-lg max-w-7xl mx-auto w-full">
+        <div class="flex items-center">
+            <h1 class="font-rajdhani text-neon-blue font-bold text-3xl md:text-4xl m-0">
+                <span class="text-neon-light">P</span>roject
+            </h1>
+            <h1 class="font-rajdhani text-highlight-orange text-xl md:text-2xl mt-1 ml-2">Zetta</h1>
+        </div>
+        <nav class="flex gap-4">
+            <a href="extensed1.html" class="text-gray-300 hover:text-neon-light transition flex items-center">
+                Voltar
+            </a>
+            <a href="#" class="px-3 py-1 bg-highlight-orange text-dark-bg font-bold rounded-md hover:bg-yellow-400 transition">
+                Início
+            </a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto w-full flex-grow">
+        
+        <div class="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-white/10 pb-4">
+            <div>
+                <h2 class="text-4xl font-rajdhani font-bold text-white mb-2">Histórico de Atividades</h2>
+                <p class="text-gray-400">Extensões que você visualizou recentemente.</p>
+            </div>
+            <button onclick="clearHistory()" class="mt-4 md:mt-0 text-red-400 hover:text-red-300 text-sm font-bold border border-red-900/50 bg-red-900/10 px-4 py-2 rounded transition hover:bg-red-900/30">
+                Limpar Histórico
+            </button>
+        </div>
+
+        <div id="history-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+
+        <div id="empty-state" class="hidden flex-col items-center justify-center py-20 text-center opacity-70">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-neon-blue mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h3 class="text-2xl font-rajdhani font-bold text-gray-300">Nenhum histórico recente</h3>
+            <p class="text-gray-500 mt-2">As extensões que você visitar aparecerão aqui.</p>
+            <a href="extensed1.html" class="mt-6 px-6 py-2 border border-neon-blue text-neon-blue rounded hover:bg-neon-blue hover:text-darkest-bg transition font-bold">
+                Explorar Extensões
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="max-w-7xl mx-auto w-full mt-12 pt-6 border-t border-white/10 text-center text-gray-500 text-sm">
+        &copy; 2025 Project Zetta. Interface baseada em Gnome Design.
+    </footer>
+
+    <script>
+        // --- 1. Base de Dados (Mesma do arquivo original) ---
+        const extensionData = {
+            "alphabetical_app_grid": { title: "Alphabetical App Grid", description: "Organiza o grid de aplicativos na visão de atividades em ordem alfabética.", author: "Jonas K." },
+            "blur_my_shell": { title: "Blur my Shell", description: "Aplica um efeito de desfoque (blur) no painel superior do Gnome e atividades.", author: "Ariel B." },
+            "caffeine": { title: "Caffeine", description: "Impede que a tela seja bloqueada ou que o sistema entre em suspensão.", author: "Federico M." },
+            "dash_to_panel": { title: "Dash to Panel", description: "Transforma a Dock e o Painel Superior em uma única barra de tarefas.", author: "Jonas K." },
+            "gsconnect": { title: "GSConnect", description: "Integra o seu dispositivo Android com o desktop Gnome usando KDE Connect.", author: "Andy G." },
+            "switcher": { title: "Switcher", description: "Melhora o alternador de janelas padrão do Gnome.", author: "Alex C." },
+            "tactile": { title: "Tactile", description: "Extensão de organização de janelas (tiling) para layouts predefinidos.", author: "Ryan M." },
+            "user_themes": { title: "User Themes", description: "Permite carregar temas de shell instalados pelo usuário.", author: "Andrew W." },
+        };
+
+        // --- 2. Simulação de Dados de Histórico ---
+        // Na prática, você usaria localStorage.getItem('viewedHistory')
+        // Aqui estou criando um mock para você ver o design funcionando
+        let mockHistoryLog = JSON.parse(localStorage.getItem('zettaHistory')) || [];
+
+        // --- 3. Renderização ---
+        function renderHistory() {
+            const grid = document.getElementById('history-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            grid.innerHTML = ''; // Limpa grid
+
+            // Verifica se há dados (Troque mockHistoryLog por seus dados reais do localStorage)
+            const historyData = mockHistoryLog; 
+
+            if (!historyData || historyData.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+                return;
+            } else {
+                grid.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+            }
+
+            historyData.forEach(item => {
+                const data = extensionData[item.id];
+                if (data) {
+                    const card = document.createElement('div');
+                    // Estilo consistente com o card lateral da página original
+                    card.className = 'bg-dark-bg p-6 rounded-xl neon-border-blue/30 hover:neon-border-blue hover-glow transition duration-300 flex flex-col justify-between h-full group';
+                    
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-rajdhani font-bold text-neon-light group-hover:text-white transition">${data.title}</h3>
+                                <span class="text-xs font-mono text-gray-500 bg-black/30 px-2 py-1 rounded border border-white/5">${item.timestamp}</span>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4 line-clamp-2">${data.description}</p>
+                            <p class="text-xs text-gray-600 mb-4">Por: <span class="text-gray-500">${data.author}</span></p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex justify-end">
+                            <a href="extensed1.html?id=${item.id}" class="text-sm font-bold text-highlight-orange hover:text-yellow-300 flex items-center gap-1 transition">
+                                Ver Detalhes <span>&rarr;</span>
+                            </a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+        }
+
+        // --- 4. Função Limpar Histórico ---
+        function clearHistory() {
+            if(confirm("Tem certeza que deseja limpar todo o histórico?")) {
+                mockHistoryLog = []; // Limpa o array
+                // localStorage.removeItem('viewedHistory'); // No real, remove do storage
+                renderHistory(); // Re-renderiza a tela
+            }
+        }
+
+        // Inicializa
+        window.onload = renderHistory;
+
+    </script>
+</body>
+</html>
