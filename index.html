@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Project Zetta</title>
- <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Zetta</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="inicio">
@@ -20,12 +20,35 @@
     <div class="catalogo">
         <div class="item-catalogo">
             <span class="icone">🛠️</span> <span class="texto-icone">Utilitário</span>
+            
+            <div class="menu-catalogo-dropdown">
+                <a href="#">Preload</a>
+                <a href="#">Alphabetic App Grid</a>
+                <a href="#">Caffeine</a>
+                <a href="#">Switcher</a>
+                <a href="#">Tactile</a>
+            </div>
         </div>
+        
         <div class="item-catalogo">
             <span class="icone">🔧</span> <span class="texto-icone">Ferramentas</span>
+            
+            <div class="menu-catalogo-dropdown">
+                <a href="#">Freon</a>
+                <a href="#">GSconnect</a>
+            </div>
         </div>
+        
         <div class="item-catalogo">
             <span class="icone">🖥️</span> <span class="texto-icone">Interface</span>
+            
+            <div class="menu-catalogo-dropdown">
+                <a href="#">Blur my Shell</a>
+                <a href="#">Dash to panel</a>
+                <a href="#">Dash to dock</a>
+                <a href="#">User Themes</a>
+                <a href="#">Arc menu</a>
+            </div>
         </div>
     </div>
     <form action="/search" method="GET" class="barra-pesquisa">
@@ -36,92 +59,107 @@
 </div>
 
 <div class="conteudo-principal">
- 
-  <form id="downloadForm">
-  <div class="container-colunas"> 
-      <div class="secao-downloads">
     
-    <div class="bloco-download">
-          <input type="checkbox" id="versaoEstavel1" name="download_option" value="extensed1.html" class="checkbox-custom">
-     <label for="versaoEstavel1" class="label-download">
-      <h3>Versão Estável 1.0.2</h3>
-      <p class="textowhite">Acompanhado com: <br> Alphabetical App Grid,Blur my Shell,Caffeine,Dash to Panel,GSConnect,Switcher,Tactile,User Themes</p>
-      <a href="extensed1.html" class="link-download">Download</a>
-     </label>
-    </div>
-    
-    <div class="bloco-download">
-          <input type="checkbox" id="versaoBeta1" name="download_option" value="extensed2.html" class="checkbox-custom">
-     <label for="versaoBeta1" class="label-download">
-      <h3>Versão Beta 1.1.0</h3>
-      <p class="textowhite">Contém os recursos mais recentes (Pode ter bugs).</p>
-      <a href="extensed2.html" class="link-download">Download</a>
-     </label>
-    </div>
-    
-    <div class="bloco-download">
-          <input type="checkbox" id="versaoCLI1" name="download_option" value="extensed3.html" class="checkbox-custom">
-     <label for="versaoCLI1" class="label-download">
-      <h3>Versão CLI</h3>
-      <p class="textowhite">Para desenvolvedores e automação.</p>
-      <a href="extensed3.html" class="link-download">Download</a>
-     </label>
-    </div>
-    
-   </div>
+    <form id="downloadForm">
+    <div class="container-colunas"> 
+        <div class="secao-downloads">
+        
+        <div class="bloco-download">
+            <input type="checkbox" id="versaoEstavel1" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+        <label for="versaoEstavel1" class="label-download">
+            <h3>Versão Estável 1.0.2</h3>
+            <p class="textowhite">Acompanhado com: <br> Alphabetical App Grid,Blur my Shell,Caffeine,Dash to Panel,GSConnect,Switcher,Tactile,User Themes</p>
+        </label>
+        <div class="botoes-acao">
+            <a href="" class="link-download" download="">Download</a>
+            <a href="extensed1.html" class="link-download link-detalhes">Ver Detalhes</a>
+        </div>
+        </div>
+        
+        <div class="bloco-download">
+            <input type="checkbox" id="versaoBeta1" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
+        <label for="versaoBeta1" class="label-download">
+            <h3>Versão Beta 1.1.0</h3>
+            <p class="textowhite">Contém os recursos mais recentes (Pode ter bugs).</p>
+        </label>
+        <div class="botoes-acao">
+            <a href="assets/beta-1.1.0.zip" class="link-download" download="Project-Zetta-Beta-1.1.0.zip">Download</a>
+            <a href="pagina-detalhes-ext2.html" class="link-download link-detalhes">Ver Detalhes</a>
+        </div>
+        </div>
+        
+        <div class="bloco-download">
+            <input type="checkbox" id="versaoCLI1" name="download_option" value="assets/cli-latest.tar" class="checkbox-custom">
+        <label for="versaoCLI1" class="label-download">
+            <h3>Versão CLI</h3>
+            <p class="textowhite">Para desenvolvedores e automação.</p>
+        </label>
+        <div class="botoes-acao">
+            <a href="assets/cli-latest.tar" class="link-download" download="Project-Zetta-CLI.tar">Download</a>
+            <a href="pagina-detalhes-ext3.html" class="link-download link-detalhes">Ver Detalhes</a>
+        </div>
+        </div>
+        
+        </div>
 
-      <div class="secao-downloads-direita">
+        <div class="secao-downloads-direita">
 
-    <div class="bloco-download">
-          <input type="checkbox" id="versaoEstavel2" name="download_option" value="extensed1_2.html" class="checkbox-custom">
-     <label for="versaoEstavel2" class="label-download">
-      <h3>Versão Estável 1.0.2</h3>
-      <p class="textowhite">Acompanhado com: <br> Alphabetical App Grid,Blur my Shell,Caffeine,Dash to Panel,GSConnect,Switcher,Tactile,User Themes</p>
-      <a href="extensed1.html" class="link-download">Download</a>
-     </label>
+        <div class="bloco-download">
+            <input type="checkbox" id="versaoEstavel2" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+        <label for="versaoEstavel2" class="label-download">
+            <h3>Versão Estável 1.0.2</h3>
+            <p class="textowhite">Acompanhado com: <br> Alphabetical App Grid,Blur my Shell,Caffeine,Dash to Panel,GSConnect,Switcher,Tactile,User Themes</p>
+        </label>
+        <div class="botoes-acao">
+            <a href="assets/stable-1.0.2.zip" class="link-download" download="Project-Zetta-Estavel-1.0.2.zip">Download</a>
+            <a href="pagina-detalhes-ext4.html" class="link-download link-detalhes">Ver Detalhes</a>
+        </div>
+        </div>
+        
+        <div class="bloco-download">
+            <input type="checkbox" id="versaoBeta2" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
+        <label for="versaoBeta2" class="label-download">
+            <h3>Versão Beta 1.1.0</h3>
+            <p class="textowhite">Contém os recursos mais recentes (Pode ter bugs).</p>
+        </label>
+        <div class="botoes-acao">
+            <a href="assets/beta-1.1.0.zip" class="link-download" download="Project-Zetta-Beta-1.1.0.zip">Download</a>
+            <a href="pagina-detalhes-ext5.html" class="link-download link-detalhes">Ver Detalhes</a>
+        </div>
+        </div>
+        
+        <div class="bloco-download">
+            <input type="checkbox" id="versaoCLI2" name="download_option" value="assets/cli-latest.tar" class="checkbox-custom">
+        <label for="versaoCLI2" class="label-download">
+            <h3>Versão CLI</h3>
+            <p class="textowhite">Para desenvolvedores e automação.</p>
+        </label>
+        <div class="botoes-acao">
+            <a href="assets/cli-latest.tar" class="link-download" download="Project-Zetta-CLI.tar">Download</a>
+            <a href="pagina-detalhes-ext6.html" class="link-download link-detalhes">Ver Detalhes</a>
+        </div>
+        </div>
+        </div>
     </div>
-    
-    <div class="bloco-download">
-          <input type="checkbox" id="versaoBeta2" name="download_option" value="extensed2_2.html" class="checkbox-custom">
-     <label for="versaoBeta2" class="label-download">
-      <h3>Versão Beta 1.1.0</h3>
-      <p class="textowhite">Contém os recursos mais recentes (Pode ter bugs).</p>
-      <a href="extensed2.html" class="link-download">Download</a>
-     </label>
+    </form>    <div class="botao-master-wrapper">
+    <button id="masterDownloadBtn" class="link-download botao-master" type="button" disabled>
+        Baixar Selecionados (0)
+    </button>
     </div>
-    
-    <div class="bloco-download">
-          <input type="checkbox" id="versaoCLI2" name="download_option" value="extensed3_2.html" class="checkbox-custom">
-     <label for="versaoCLI2" class="label-download">
-      <h3>Versão CLI</h3>
-      <p class="textowhite">Para desenvolvedores e automação.</p>
-      <a href="extensed3.html" class="link-download">Download</a>
-     </label>
-    </div>
-   </div>
-  </div>
- </form>   <div class="botao-master-wrapper">
-  <button id="masterDownloadBtn" class="link-download botao-master" type="button" disabled>
-   Baixar Selecionados (0)
-  </button>
- </div>
 </div>
- 
+    
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const form = document.getElementById('downloadForm');
-        // Seleciona todas as checkboxes com o nome "download_option"
         const checkboxes = form.querySelectorAll('input[name="download_option"]');
         const masterBtn = document.getElementById('masterDownloadBtn');
 
         function updateCount() {
             const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
             masterBtn.textContent = `Baixar Selecionados (${selectedCount})`;
-            // Habilita/Desabilita o botão
             masterBtn.disabled = selectedCount === 0; 
         }
 
-        // Função principal de download (Simulação)
         masterBtn.addEventListener('click', () => {
             const selectedLinks = [];
             checkboxes.forEach(checkbox => {
@@ -129,12 +167,9 @@
                     const fileUrl = checkbox.value;
                     selectedLinks.push(fileUrl);
                     
-                    // Lógica para download de múltiplos arquivos (apenas simulação no front-end):
-                    // Para realmente forçar o download de múltiplos arquivos, é necessário
-                    // iterar e acionar um clique em um link '<a>' para cada arquivo.
                     const a = document.createElement('a');
                     a.href = fileUrl;
-                    a.download = fileUrl.split('/').pop(); // Define o nome do arquivo
+                    a.download = fileUrl.split('/').pop(); 
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a); 
@@ -143,9 +178,7 @@
             });
 
             if (selectedLinks.length > 0) {
-                // Mensagem de alerta após tentar iniciar todos os downloads
                 alert('Tentando iniciar o download de ' + selectedLinks.length + ' arquivos.');
-                // Limpa as seleções após o "download"
                 checkboxes.forEach(cb => cb.checked = false);
                 updateCount();
             } else {
@@ -153,17 +186,13 @@
             }
         });
 
-        // Adiciona o listener para atualizar a contagem
         checkboxes.forEach(cb => {
             cb.addEventListener('change', updateCount);
         });
 
-        // Inicializa o contador ao carregar a página
         updateCount();
     });
 </script>
-
-
 
 </body>
 </html>

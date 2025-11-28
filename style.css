@@ -35,7 +35,7 @@ body{
     border: 1px solid orange;
 
     /* CENTRALIZAÇÃO */
-    margin: 10px auto 0; /* Ajusta a margem inferior para o conteúdo */
+    margin: 10px auto 0; 
     padding: 8px 15px;
 
     /* Configuração Flexbox para o Header */
@@ -57,13 +57,15 @@ body{
     font-size: 30px;
 }
 
-/* --- CATÁLOGO E FILTRO (Novos Estilos) --- */
+/* --- CATÁLOGO E FILTRO --- */
 .catalogo {
     display: flex;
-    gap: 30px; /* Aumentado para melhor espaçamento dos botões de filtro */
+    gap: 30px; 
     margin: 0 30px; 
     padding: 5px 0;
     align-items: center;
+    position: relative; 
+    z-index: 10; 
 }
 
 .item-catalogo {
@@ -72,11 +74,15 @@ body{
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s, color 0.2s, border-bottom 0.2s;
-    padding-bottom: 5px; /* Espaço para a borda ativa */
+    padding-bottom: 5px; 
+    
+    /* ESSENCIAL para posicionar o menu pop-up */
+    position: relative; 
+    z-index: 20; 
 }
 
 .item-catalogo:hover {
-    transform: scale(1.05); /* Efeito de zoom mais sutil no hover */
+    transform: scale(1.05); 
 }
 
 .icone {
@@ -99,7 +105,7 @@ body{
 
 /* ESTILO PARA O ITEM DO CATÁLOGO ATIVO (Filtro selecionado) */
 .item-catalogo.ativo {
-    border-bottom: 2px solid orange; /* Linha laranja para indicar que está ativo */
+    border-bottom: 2px solid orange; 
     
 }
 
@@ -155,25 +161,252 @@ body{
     box-shadow: 0 0 10px #00DFFF;
 }
 
-/* --- CONTEÚDO PRINCIPAL (Alvo do Filtro) --- */
-.main-content {
-    background-color: #050E1A; 
+/* --- CONTÊINER PRINCIPAL E FORMULÁRIO --- */
+.conteudo-principal {
     width: 90%;
     max-width: 1000px;
-    margin: 0 auto 10px; /* Conecta com o header acima */
-    padding: 20px;
-    border: 1px solid #1f375a;
-    border-top: none; 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    margin: 40px auto;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 40px; 
 }
 
-.conteudo h3 {
-    margin-top: 0;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+#downloadForm {
+    width: 100%;
 }
 
-/* --- RESPONSIVIDADE --- (Ajuste para telas menores) */
+.container-colunas {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%; 
+    gap: 40px;
+}
+
+/* --- SEÇÕES DE DOWNLOADS (ESQUERDA E DIREITA) --- */
+.secao-downloads, .secao-downloads-direita {
+    width: 50%; 
+    max-width: 500px; 
+    margin: 0; 
+    
+    display: flex;
+    flex-direction: column; 
+    align-items: stretch;
+    gap: 15px; 
+}
+
+/* --- ESTILO DE CADA BLOCO INDIVIDUAL --- */
+.bloco-download {
+    flex-basis: auto; 
+    min-width: 250px;
+    text-align: center;
+    padding: 0; 
+    border: 1px solid #00BFFF; 
+    background-color: rgba(10, 25, 47, 0.7); 
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); 
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%; 
+    box-sizing: border-box; 
+    position: relative; 
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.bloco-download:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 191, 255, 0.8), 0 0 30px orange;
+}
+
+
+/* --- LAYOUT DO LABEL E BOTÕES DE AÇÃO (MODIFICADO) --- */
+
+/* Garante que o label ocupe toda a área superior para seleção */
+.label-download {
+    display: block; 
+    padding: 20px 20px 10px 20px; /* Reduz o padding inferior */
+    cursor: pointer;
+}
+
+/* Novo container para os botões */
+.botoes-acao {
+    text-align: center; /* Centraliza os botões */
+    padding-bottom: 20px; /* Adiciona espaço abaixo dos botões */
+}
+
+/* LINKS DE DOWNLOAD e DETALHES */
+.link-download {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: orange;
+    color: #0A192F;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.link-download:hover {
+    background-color: #FFD700;
+}
+
+/* Garante que os links dentro do novo container fiquem inline */
+.botoes-acao .link-download {
+    /* Remove a margem superior que não é mais necessária */
+    margin-top: 0; 
+    display: inline-block;
+}
+
+/* --- NOVO ESTILO PARA O BOTÃO DETALHES --- */
+.link-detalhes {
+    background-color: transparent; 
+    color: orange; 
+    border: 1px solid orange; 
+    margin-left: 10px; 
+    padding: 10px 15px; 
+}
+
+.link-detalhes:hover {
+    background-color: rgba(255, 165, 0, 0.2); 
+    color: #FFD700; 
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); 
+}
+
+/* --- ESTILO DOS CHECKBOXES PERSONALIZADOS --- */
+
+/* Esconde a checkbox nativa */
+.checkbox-custom {
+    position: absolute;
+    opacity: 0; 
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    z-index: -1;
+}
+
+/* ::before cria a caixa quadrada */
+.label-download::before {
+    content: '';
+    position: absolute;
+    top: 10px; 
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00BFFF; 
+    background-color: #0A192F;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* ::after cria o VISTO (CHECKMARK) */
+.label-download::after {
+    content: '✓'; 
+    color: orange; 
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0; 
+    transition: opacity 0.2s ease-in-out;
+    line-height: 1;
+    text-shadow: 0 0 5px orange;
+}
+
+/* ESTILO QUANDO O CHECKBOX ESTÁ MARCADO */
+.checkbox-custom:checked + .label-download::before {
+    background-color: #00BFFF; 
+    border-color: orange; 
+    box-shadow: 0 0 5px orange;
+}
+
+.checkbox-custom:checked + .label-download::after {
+    opacity: 1; 
+    color: #0A192F; 
+    text-shadow: none;
+    top: 8px; 
+    right: 9px;
+}
+
+/* --- ESTILO DO BOTÃO MESTRE (Baixar Selecionados) --- */
+.botao-master-wrapper {
+    width: 100%; 
+    max-width: 1000px;
+    text-align: center;
+}
+
+.botao-master {
+    font-size: 20px;
+    padding: 12px 30px;
+    background-color: orange;
+    box-shadow: 0 0 15px orange; 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.botao-master:hover:not(:disabled) {
+    background-color: #FFD700;
+    box-shadow: 0 0 20px #FFD700, 0 0 30px orange; 
+}
+
+/* Estilo para quando o botão está desabilitado */
+.botao-master:disabled {
+    background-color: #333; 
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* --- ESTILO PARA O MENU DROPDOWN (Z-index alto para sobreposição) --- */
+.menu-catalogo-dropdown {
+    display: none; 
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    
+    position: absolute; 
+    z-index: 10000; 
+    
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    
+    min-width: 180px; 
+    padding: 10px;
+    background-color: #050E1A; 
+    border: 1px solid orange; 
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.5); 
+    border-radius: 4px;
+    
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Estilo dos links dentro do menu */
+.menu-catalogo-dropdown a {
+    color: #00DFFF;
+    text-decoration: none;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 3px;
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap; 
+}
+
+.menu-catalogo-dropdown a:hover {
+    background-color: rgba(0, 191, 255, 0.1); 
+    color: orange;
+}
+
+/* REGRA PRINCIPAL: EXIBIR ao passar o mouse */
+.item-catalogo:hover .menu-catalogo-dropdown {
+    display: flex; 
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- MEDIA QUERY PARA RESPONSIVIDADE --- */
 @media (max-width: 768px) {
     .inicio {
         flex-direction: column; 
@@ -194,7 +427,6 @@ body{
         align-items: center;
     }
 
-    /* Ajuste para o título "Zetta" em telas menores */
     .position{
         margin-left: 0; 
         margin-top: -10px; 
@@ -217,190 +449,28 @@ body{
         width: auto;
     }
 
-    .main-content {
-        padding: 15px;
+    /* Garante que os botões (agora em .botoes-acao) fiquem em colunas no mobile */
+    .botoes-acao .link-download {
+        display: block; 
+        margin-left: 0 !important;
+        margin-bottom: 5px;
     }
-}
+    
+    /* Centraliza o wrapper de botões no mobile */
+    .botoes-acao {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
 
-/* --- CONTÊINER PRINCIPAL E FORMULÁRIO --- */
-.conteudo-principal {
- width: 90%;
- max-width: 1000px;
- margin: 40px auto;
- /* Define a direção de coluna para empilhar as duas colunas (via form) e o botão mestre */
- display: flex; 
- flex-direction: column; 
- align-items: center; 
- gap: 40px; 
-}
+    .container-colunas {
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px;
+    }
 
-#downloadForm {
- width: 100%;
-}
-
-.container-colunas {
- display: flex;
- justify-content: space-between; 
- width: 100%; /* Ocupa a largura total do .conteudo-principal */
- gap: 40px;
-}
-
-
-/* --- SEÇÕES DE DOWNLOADS (ESQUERDA E DIREITA) --- */
-.secao-downloads, .secao-downloads-direita {
- width: 50%; 
- max-width: 500px; 
- margin: 0; 
- 
- display: flex;
- flex-direction: column; 
- align-items: stretch;
- gap: 15px; 
-}
-
-
-/* --- ESTILO DE CADA BLOCO INDIVIDUAL --- */
-.bloco-download {
- flex-basis: auto; 
- min-width: 250px;
- text-align: center;
- padding: 0; /* Removido para o label gerenciar */
- border: 1px solid #00BFFF; 
- background-color: rgba(10, 25, 47, 0.7); 
- box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); 
- transition: transform 0.3s, box-shadow 0.3s;
- width: 100%; 
- box-sizing: border-box; 
- position: relative; 
-}
-
-/* O conteúdo interno clicável (LABEL) */
-.label-download {
- display: block; 
- padding: 20px;
- cursor: pointer;
-}
-
-/* EFEITO AO PASSAR O MOUSE */
-.bloco-download:hover {
- transform: translateY(-5px);
- box-shadow: 0 5px 20px rgba(0, 191, 255, 0.8), 0 0 30px orange;
-}
-
-/* LINKS DE DOWNLOAD */
-.link-download {
- display: inline-block;
- margin-top: 15px;
- padding: 10px 20px;
- background-color: orange;
- color: #0A192F;
- font-weight: 700;
- text-decoration: none;
- border-radius: 5px;
- transition: background-color 0.3s;
-}
-.link-download:hover {
- background-color: #FFD700;
-}
-
-/* --- ESTILO DOS CHECKBOXES PERSONALIZADOS --- */
-
-/* Esconde a checkbox nativa */
-.checkbox-custom {
- position: absolute;
- opacity: 0; 
- width: 1px;
- height: 1px;
- overflow: hidden;
- clip: rect(0 0 0 0);
- z-index: -1;
-}
-
-/* ::before cria a caixa quadrada */
-.label-download::before {
- content: '';
- position: absolute;
- top: 10px; 
- right: 10px;
- width: 20px;
- height: 20px;
- border: 2px solid #00BFFF; 
- background-color: #0A192F;
- border-radius: 3px;
- transition: all 0.2s ease-in-out;
-}
-
-/* ::after cria o VISTO (CHECKMARK) */
-.label-download::after {
- content: '✓'; 
- color: orange; 
- font-size: 20px;
- position: absolute;
- top: 10px;
- right: 10px;
- opacity: 0; 
- transition: opacity 0.2s ease-in-out;
- line-height: 1;
- text-shadow: 0 0 5px orange;
-}
-
-/* ESTILO QUANDO O CHECKBOX ESTÁ MARCADO */
-.checkbox-custom:checked + .label-download::before {
- background-color: #00BFFF; 
- border-color: orange; 
- box-shadow: 0 0 5px orange;
-}
-
-.checkbox-custom:checked + .label-download::after {
- opacity: 1; 
- color: #0A192F; 
- text-shadow: none;
- top: 8px; 
- right: 9px;
-}
-
-/* --- ESTILO DO BOTÃO MESTRE (Baixar Selecionados) --- */
-.botao-master-wrapper {
- width: 100%; 
- max-width: 1000px;
- text-align: center;
-}
-
-.botao-master {
- font-size: 20px;
- padding: 12px 30px;
- background-color: orange;
- box-shadow: 0 0 15px orange; 
- border: none;
- cursor: pointer;
- transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.botao-master:hover:not(:disabled) {
- background-color: #FFD700;
- box-shadow: 0 0 20px #FFD700, 0 0 30px orange; 
-}
-
-/* Estilo para quando o botão está desabilitado */
-.botao-master:disabled {
- background-color: #333; 
- color: #888;
- cursor: not-allowed;
- box-shadow: none;
-}
-
-
-/* --- MEDIA QUERY PARA RESPONSIVIDADE --- */
-@media (max-width: 768px) {
- .container-colunas {
-  flex-direction: column; /* Força o empilhamento vertical das colunas */
-  align-items: center; 
-  gap: 20px;
- }
-
- .secao-downloads, .secao-downloads-direita {
-  width: 100%; 
-  max-width: 400px; 
- }
+    .secao-downloads, .secao-downloads-direita {
+        width: 100%; 
+        max-width: 400px; 
+    }
 }
