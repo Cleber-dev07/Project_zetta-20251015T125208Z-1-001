@@ -327,11 +327,14 @@
             if (data.similar.length === 0) {
                 document.getElementById('similar-extensions').querySelector('h3').textContent = "Nenhuma Extensão Similar Encontrada";
             }
+            // Adicione isso DENTRO de loadExtensionDetails, antes de fechar a função
+saveToHistory(extId);
         }
 
         /**
          * Mostra a caixa de diálogo customizada para a instalação.
          */
+        
         function showInstallationMessage() {
             const msgBox = document.getElementById('install-message-box');
             msgBox.classList.remove('hidden');
@@ -354,6 +357,29 @@
             loadExtensionDetails(newId);
         }
 
+        function saveToHistory(id) {
+    // Pega o histórico atual ou cria um array vazio
+    let history = JSON.parse(localStorage.getItem('zettaHistory')) || [];
+    
+    // Remove se já existir (para colocar no topo como "mais recente")
+    history = history.filter(item => item.id !== id);
+    
+    // Adiciona o novo item no início
+    const now = new Date();
+    const timeString = now.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+    
+    history.unshift({
+        id: id,
+        timestamp: timeString
+    });
+    
+    // Limita a 10 itens para não encher demais
+    if (history.length > 10) history.pop();
+    
+    // Salva
+    localStorage.setItem('zettaHistory', JSON.stringify(history));
+}
+
         // --- Inicialização ---
         window.onload = () => {
             loadExtensionDetails();
@@ -365,4 +391,5 @@
         };
     </script>
 </body>
+
 </html>
