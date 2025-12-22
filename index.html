@@ -67,8 +67,8 @@
         <div class="bloco-download">
             <input type="checkbox" id="versaoEstavel1" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
         <label for="versaoEstavel1" class="label-download">
-            <h3>Versão Estável 1.0.2</h3>
-            <p class="textowhite">Acompanhado com: <br> Alphabetical App Grid,Blur my Shell,Caffeine,Dash to Panel,GSConnect,Switcher,Tactile,User Themes</p>
+            <h3>Alphabetical App Grid</h3>
+            <p class="textowhite">Organiza os apps em ordem alfabetica</p>
         </label>
         <div class="botoes-acao">
             <a href="" class="link-download" download="">Download</a>
@@ -79,7 +79,7 @@
         <div class="bloco-download">
             <input type="checkbox" id="versaoBeta1" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
         <label for="versaoBeta1" class="label-download">
-            <h3>Versão Beta 1.1.0</h3>
+            <h3>Blur my Shell</h3>
             <p class="textowhite">Contém os recursos mais recentes (Pode ter bugs).</p>
         </label>
         <div class="botoes-acao">
@@ -91,7 +91,7 @@
         <div class="bloco-download">
             <input type="checkbox" id="versaoCLI1" name="download_option" value="assets/cli-latest.tar" class="checkbox-custom">
         <label for="versaoCLI1" class="label-download">
-            <h3>Versão CLI</h3>
+            <h3>Caffeine</h3>
             <p class="textowhite">Para desenvolvedores e automação.</p>
         </label>
         <div class="botoes-acao">
@@ -107,8 +107,8 @@
         <div class="bloco-download">
             <input type="checkbox" id="versaoEstavel2" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
         <label for="versaoEstavel2" class="label-download">
-            <h3>Versão Estável 1.0.2</h3>
-            <p class="textowhite">Acompanhado com: <br> Alphabetical App Grid,Blur my Shell,Caffeine,Dash to Panel,GSConnect,Switcher,Tactile,User Themes</p>
+            <h3>Dash to Panel</h3>
+            <p class="textowhite">Tras a dash para baixo</p>
         </label>
         <div class="botoes-acao">
             <a href="assets/stable-1.0.2.zip" class="link-download" download="Project-Zetta-Estavel-1.0.2.zip">Download</a>
@@ -119,7 +119,7 @@
         <div class="bloco-download">
             <input type="checkbox" id="versaoBeta2" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
         <label for="versaoBeta2" class="label-download">
-            <h3>Versão Beta 1.1.0</h3>
+            <h3>GSConnect</h3>
             <p class="textowhite">Contém os recursos mais recentes (Pode ter bugs).</p>
         </label>
         <div class="botoes-acao">
@@ -131,7 +131,7 @@
         <div class="bloco-download">
             <input type="checkbox" id="versaoCLI2" name="download_option" value="assets/cli-latest.tar" class="checkbox-custom">
         <label for="versaoCLI2" class="label-download">
-            <h3>Versão CLI</h3>
+            <h3>User Themes</h3>
             <p class="textowhite">Para desenvolvedores e automação.</p>
         </label>
         <div class="botoes-acao">
@@ -145,9 +145,12 @@
     <button id="masterDownloadBtn" class="link-download botao-master" type="button" disabled>
         Baixar Selecionados (0)
     </button>
-        <a href="Histórico.html" class="px-3 py-1 bg-highlight-orange text-dark-bg font-bold rounded-md hover:bg-yellow-400 transition">
+<br>
+<br>
+        <a href="Histórico.html" class="link-download botao-master">
             Pacotes Baixados
         </a>
+
     </div>
 </div>
     
@@ -164,28 +167,46 @@
         }
 
         masterBtn.addEventListener('click', () => {
-            const selectedLinks = [];
+            const selectedItems = [];
+            const historicoLocal = JSON.parse(localStorage.getItem('zettaDownloadHistory')) || [];
+
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) {
                     const fileUrl = checkbox.value;
-                    selectedLinks.push(fileUrl);
+                    const nomeVersao = checkbox.nextElementSibling.querySelector('h3').innerText;
                     
+                    // Armazena as informações de cada arquivo selecionado
+                    selectedItems.push({
+                        titulo: nomeVersao,
+                        url: fileUrl,
+                        arquivo: fileUrl.split('/').pop()
+                    });
+                    
+                    // Executa o download imediato
                     const a = document.createElement('a');
                     a.href = fileUrl;
                     a.download = fileUrl.split('/').pop(); 
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a); 
-                    
                 }
             });
 
-            if (selectedLinks.length > 0) {
-                alert('Tentando iniciar o download de ' + selectedLinks.length + ' arquivos.');
+            if (selectedItems.length > 0) {
+                // Cria um ÚNICO registro para o grupo de downloads (o "Pacote")
+                const novoPacote = {
+                    id: Date.now(), // ID único baseado no tempo
+                    data: new Date().toLocaleString('pt-BR'),
+                    itens: selectedItems,
+                    total: selectedItems.length
+                };
+
+                historicoLocal.unshift(novoPacote);
+                localStorage.setItem('zettaDownloadHistory', JSON.stringify(historicoLocal));
+                
+                alert(`Iniciando o download de ${selectedItems.length} arquivos. O pacote foi salvo no histórico.`);
                 checkboxes.forEach(cb => cb.checked = false);
                 updateCount();
-            } else {
-                alert('Nenhum item selecionado para download.');
             }
         });
 
@@ -200,3 +221,5 @@
 </body>
 
 </html>
+
+
