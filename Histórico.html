@@ -53,10 +53,7 @@
             <h1 class="font-rajdhani text-highlight-orange text-xl md:text-2xl mt-1 ml-2">Zetta</h1>
         </div>
         <nav class="flex gap-4">
-            <a href="extensed1.html" class="text-gray-300 hover:text-neon-light transition flex items-center">
-                Voltar
-            </a>
-            <a href="#" class="px-3 py-1 bg-highlight-orange text-dark-bg font-bold rounded-md hover:bg-yellow-400 transition">
+            <a href="index.html" class="px-3 py-1 bg-highlight-orange text-dark-bg font-bold rounded-md hover:bg-yellow-400 transition">
                 Início
             </a>
         </nav>
@@ -95,83 +92,78 @@
     </footer>
 
     <script>
-        // --- 1. Base de Dados (Mesma do arquivo original) ---
-        const extensionData = {
-            "alphabetical_app_grid": { title: "Alphabetical App Grid", description: "Organiza o grid de aplicativos na visão de atividades em ordem alfabética.", author: "Jonas K." },
-            "blur_my_shell": { title: "Blur my Shell", description: "Aplica um efeito de desfoque (blur) no painel superior do Gnome e atividades.", author: "Ariel B." },
-            "caffeine": { title: "Caffeine", description: "Impede que a tela seja bloqueada ou que o sistema entre em suspensão.", author: "Federico M." },
-            "dash_to_panel": { title: "Dash to Panel", description: "Transforma a Dock e o Painel Superior em uma única barra de tarefas.", author: "Jonas K." },
-            "gsconnect": { title: "GSConnect", description: "Integra o seu dispositivo Android com o desktop Gnome usando KDE Connect.", author: "Andy G." },
-            "switcher": { title: "Switcher", description: "Melhora o alternador de janelas padrão do Gnome.", author: "Alex C." },
-            "tactile": { title: "Tactile", description: "Extensão de organização de janelas (tiling) para layouts predefinidos.", author: "Ryan M." },
-            "user_themes": { title: "User Themes", description: "Permite carregar temas de shell instalados pelo usuário.", author: "Andrew W." },
-        };
-
-        // --- 2. Simulação de Dados de Histórico ---
-        // Na prática, você usaria localStorage.getItem('viewedHistory')
-        // Aqui estou criando um mock para você ver o design funcionando
-        let mockHistoryLog = JSON.parse(localStorage.getItem('zettaHistory')) || [];
-
-        // --- 3. Renderização ---
-        function renderHistory() {
-            const grid = document.getElementById('history-grid');
-            const emptyState = document.getElementById('empty-state');
-            
-            grid.innerHTML = ''; // Limpa grid
-
-            // Verifica se há dados (Troque mockHistoryLog por seus dados reais do localStorage)
-            const historyData = mockHistoryLog; 
-
-            if (!historyData || historyData.length === 0) {
-                grid.classList.add('hidden');
-                emptyState.classList.remove('hidden');
-                emptyState.classList.add('flex');
-                return;
-            } else {
-                grid.classList.remove('hidden');
-                emptyState.classList.add('hidden');
-                emptyState.classList.remove('flex');
-            }
-
-            historyData.forEach(item => {
-                const data = extensionData[item.id];
-                if (data) {
-                    const card = document.createElement('div');
-                    // Estilo consistente com o card lateral da página original
-                    card.className = 'bg-dark-bg p-6 rounded-xl neon-border-blue/30 hover:neon-border-blue hover-glow transition duration-300 flex flex-col justify-between h-full group';
-                    
-                    card.innerHTML = `
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-rajdhani font-bold text-neon-light group-hover:text-white transition">${data.title}</h3>
-                                <span class="text-xs font-mono text-gray-500 bg-black/30 px-2 py-1 rounded border border-white/5">${item.timestamp}</span>
-                            </div>
-                            <p class="text-sm text-gray-400 mb-4 line-clamp-2">${data.description}</p>
-                            <p class="text-xs text-gray-600 mb-4">Por: <span class="text-gray-500">${data.author}</span></p>
-                        </div>
-                        <div class="pt-4 border-t border-white/5 flex justify-end">
-                            <a href="extensed1.html?id=${item.id}" class="text-sm font-bold text-highlight-orange hover:text-yellow-300 flex items-center gap-1 transition">
-                                Ver Detalhes <span>&rarr;</span>
-                            </a>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                }
+    // Função para baixar todos os arquivos de um pacote específico
+    function downloadPacoteNovamente(id) {
+        const historico = JSON.parse(localStorage.getItem('zettaDownloadHistory')) || [];
+        const pacote = historico.find(p => p.id === id);
+        
+        if (pacote && pacote.itens) {
+            pacote.itens.forEach(item => {
+                const a = document.createElement('a');
+                a.href = item.url;
+                a.download = item.arquivo;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             });
+            alert(`Reiniciando download de ${pacote.itens.length} arquivos.`);
+        }
+    }
+
+    function renderHistory() {
+        const grid = document.getElementById('history-grid');
+        const emptyState = document.getElementById('empty-state');
+        const historyData = JSON.parse(localStorage.getItem('zettaDownloadHistory')) || [];
+
+        grid.innerHTML = ''; 
+
+        if (historyData.length === 0) {
+            grid.classList.add('hidden');
+            emptyState.classList.remove('hidden');
+            emptyState.classList.add('flex');
+            return;
+        } else {
+            grid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
         }
 
-        // --- 4. Função Limpar Histórico ---
-        function clearHistory() {
-            if(confirm("Tem certeza que deseja limpar todo o histórico?")) {
-                mockHistoryLog = []; // Limpa o array
-                // localStorage.removeItem('viewedHistory'); // No real, remove do storage
-                renderHistory(); // Re-renderiza a tela
-            }
+        historyData.forEach(pacote => {
+            const card = document.createElement('div');
+            card.className = 'bg-dark-bg p-6 rounded-xl neon-border-blue/30 hover:neon-border-blue hover-glow transition duration-300 flex flex-col justify-between h-full group';
+            
+            // Cria a lista visual dos nomes dos arquivos no card
+            const listaNomes = pacote.itens.map(i => i.titulo).join(', ');
+
+            card.innerHTML = `
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-rajdhani font-bold text-neon-light group-hover:text-white transition">
+                            Pacote de Downloads
+                        </h3>
+                        <span class="text-xs font-mono text-gray-500 bg-black/30 px-2 py-1 rounded border border-white/5">${pacote.data}</span>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-1 font-bold">${pacote.total} itens selecionados:</p>
+                    <p class="text-xs text-gray-500 mb-4 italic line-clamp-2">${listaNomes}</p>
+                </div>
+                <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                    <span class="text-[10px] uppercase tracking-widest text-green-500 font-bold">Sessão Salva</span>
+                    <button onclick="downloadPacoteNovamente(${pacote.id})" class="text-sm font-bold text-highlight-orange hover:text-yellow-300 transition flex items-center gap-1">
+                        Baixar Tudo Novamente ↓
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function clearHistory() {
+        if(confirm("Tem certeza que deseja limpar todo o histórico de pacotes?")) {
+            localStorage.removeItem('zettaDownloadHistory');
+            renderHistory();
         }
+    }
 
-        // Inicializa
-        window.onload = renderHistory;
-
-    </script>
+    window.onload = renderHistory;
+</script>
 </body>
 </html>
