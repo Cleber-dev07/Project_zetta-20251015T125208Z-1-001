@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Zetta</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{background-image: url(robo3.png);
+        background-repeat: no-repeat;}
+        /* Reutilizando os mesmos ajustes da tela de login */
+        .auth-container {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 40px;
+            text-align: center;
+        }
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .auth-input {
+            width: 100% !important;
+            border-right: 1px solid #00BFFF !important;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="conteudo-principal">
+        <div class="bloco-download auth-container">
+            <div class="titulo-texto">
+                <div class="titulo-texto">
+                    <h1>
+                        <span class="primeira-letra">P</span>roject
+                    </h1>
+                    <h1 class="position">Zetta</h1>
+                </div>
+                <span class="position">Cadastrar novo usuário</span>
+            </div>
+
+            <form class="auth-form">
+                <div class="barra-pesquisa">
+                    <input type="text" placeholder="NOME COMPLETO" class="auth-input">
+                </div>
+
+                <div class="barra-pesquisa">
+                    <input type="email" placeholder="E-MAIL" class="auth-input">
+                </div>
+                <form class="auth-form">
+                    <div class="barra-pesquisa">
+                        <input type="password" id="cad-senha" placeholder="CRIAR SENHA" class="auth-input">
+                        <button type="button" onclick="toggleSenha('cad-senha', this)">👁</button>
+                    </div>
+        
+                    <div class="barra-pesquisa">
+                        <input type="password" id="cad-confirmar" placeholder="CONFIRMAR SENHA" class="auth-input">
+                        <button type="button" onclick="toggleSenha('cad-confirmar', this)">👁</button>
+                    </div>
+
+                <button type="submit" class="botao-master">REGISTRAR AGORA</button>
+            </form>
+
+            <div style="margin-top: 20px;">
+                <a href="login.html" class="texto-icone" style="text-decoration: none; font-size: 14px;">
+                    <i class="icone">«</i> VOLTAR PARA O LOGIN
+                </a>
+            </div>
+        </div>
+    </div>
+<!--PARTE EM JAVA SCRIPT-->
+
+<script>
+    function toggleSenha(inputId, button) {
+        const input = document.getElementById(inputId);
+        
+        if (input.type === 'password') {
+            input.type = 'text';
+            button.textContent = '🔒'; // Ícone de fechar/esconder
+            button.style.backgroundColor = 'orange'; // Destaque visual quando ativo
+            button.style.color = '#0A192F';
+        } else {
+            input.type = 'password';
+            button.textContent = '👁'; // Ícone de abrir/mostrar
+            button.style.backgroundColor = '#00BFFF';
+            button.style.color = '#0A192F';
+        }
+    }
+</script>
+
+
+</body>
+</html>
