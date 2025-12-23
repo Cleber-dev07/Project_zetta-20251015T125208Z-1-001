@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash to Dock - Project Zetta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#00BFFF',
+                        'neon-light': '#00DFFF',
+                        'dark-bg': '#0A192F',
+                        'darkest-bg': '#050E1A',
+                        'highlight-orange': 'orange',
+                    },
+                    fontFamily: {
+                        'rajdhani': ['Rajdhani', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&family=Inter:wght@400;700&display=swap');
+        body {
+            background-color: black;
+            font-family: 'Inter', sans-serif;
+        }
+        .neon-shadow-blue {
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+        }
+        .neon-border-blue {
+            border: 1px solid #00BFFF;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-100 p-4 md:p-8">
+
+    <header id="main-header" class="bg-dark-bg neon-border-blue neon-shadow-blue p-3 md:p-4 mb-8 flex justify-between items-center rounded-lg max-w-6xl mx-auto">
+        <div class="flex items-center">
+            <h1 class="font-rajdhani text-neon-blue font-bold text-3xl md:text-4xl m-0">
+                <span class="text-neon-light">P</span>roject
+            </h1>
+            <h1 class="font-rajdhani text-highlight-orange text-xl md:text-2xl mt-1 ml-2">Zetta</h1>
+        </div>
+        <a href="index.html" class="px-4 py-1.5 bg-highlight-orange text-dark-bg font-bold rounded-md hover:bg-yellow-400 transition shadow-lg">
+            &larr; Início
+        </a>
+    </header>
+
+    <main class="max-w-6xl mx-auto">
+        <section class="space-y-8">
+            <div class="bg-dark-bg p-6 md:p-10 rounded-xl neon-border-blue neon-shadow-blue">
+                <div class="border-b border-neon-blue/20 pb-6 mb-6">
+                    <h2 class="text-4xl md:text-6xl font-rajdhani font-bold text-neon-light">Dash to Dock</h2>
+                    <p class="text-highlight-orange font-bold tracking-widest uppercase text-sm mt-2">Enhanced Dock Extension</p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-10">
+                    <div class="flex-1">
+                        <p class="text-lg text-gray-300 leading-relaxed italic border-l-2 border-neon-blue pl-6 py-2 bg-white/5 rounded-r-lg">
+                            "Sua dock, suas regras. Transforme o dash padrão do GNOME em uma dock altamente funcional e sempre visível para acesso rápido aos seus apps."
+                        </p>
+                        <p class="text-lg text-gray-300 mt-6 leading-relaxed">
+                            A Dash to Dock é provavelmente a extensão mais popular do GNOME. Ela retira a barra de favoritos de dentro do menu de 'Atividades' e a coloca diretamente na sua área de trabalho. Com ela, você ganha controle total sobre a posição (esquerda, direita, topo ou base), tamanho dos ícones e comportamento de ocultação automática.
+                        </p>
+                        <p class="text-lg text-gray-300 mt-4 leading-relaxed">
+                            Além da estética, ela melhora o fluxo de trabalho com recursos como cliques inteligentes para alternar entre janelas, indicadores de progresso de download e suporte a temas personalizados que se integram perfeitamente ao resto do seu sistema.
+                        </p>
+                    </div>
+                    
+                    <div class="lg:w-80 flex flex-col gap-6">
+                        <button class="w-full py-5 bg-highlight-orange text-darkest-bg font-black text-xl rounded-lg shadow-[0_0_20px_rgba(255,165,0,0.4)] hover:bg-yellow-400 hover:scale-[1.02] transition transform active:scale-95"
+                                onclick="showInstallationMessage()">
+                            INSTALAR AGORA
+                        </button>
+                        
+                        <div class="bg-darkest-bg p-6 rounded-lg border border-neon-blue/30 space-y-4 shadow-inner">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 font-bold text-xs uppercase">Versão</span>
+                                <span class="text-neon-light font-mono">V90</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 font-bold text-xs uppercase">Update</span>
+                                <span class="text-neon-light font-mono">23 Dez, 2025</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 font-bold text-xs uppercase">Gnome</span>
+                                <span class="text-neon-light font-mono">40 a 47</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 font-bold text-xs uppercase">Autor</span>
+                                <span class="text-neon-light">michele_g</span>
+                            </div>
+                            <div class="pt-2 flex justify-between items-center border-t border-white/10">
+                                <span class="text-gray-500 font-bold text-xs uppercase">Rating</span>
+                                <span class="text-highlight-orange font-bold">★ 4.9 / 5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-dark-bg p-6 md:p-8 rounded-xl border border-white/10">
+                <h3 class="text-2xl font-rajdhani font-bold text-white mb-8 flex items-center gap-3">
+                    <span class="w-8 h-1 bg-neon-blue inline-block"></span>
+                    Feedback da Comunidade
+                </h3>
+                
+                <div class="space-y-8">
+                    <div class="bg-black/20 p-5 rounded-lg border-l-4 border-neon-blue">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-bold text-neon-light">Linux_User_PT</span>
+                            <span class="text-[10px] text-gray-500 uppercase tracking-widest">Há 1 dia</span>
+                        </div>
+                        <p class="text-gray-300">"Não consigo usar o GNOME sem essa extensão. O modo de ocultação inteligente é perfeito para telas pequenas e a customização é imbatível."</p>
+                    </div>
+                    
+                    <div class="pt-6 border-t border-white/5">
+                        <h4 class="text-white mb-4 font-bold text-sm uppercase tracking-wider">Deixe seu Comentário</h4>
+                        <textarea class="w-full p-4 bg-darkest-bg border border-neon-blue/20 rounded-md text-white placeholder-gray-600 focus:border-neon-blue focus:ring-1 focus:ring-neon-blue outline-none transition-all" rows="3" placeholder="O que você achou desta dock?"></textarea>
+                        <button class="mt-4 px-8 py-2 bg-neon-blue text-darkest-bg font-bold rounded-md hover:bg-neon-light transition-all shadow-lg active:scale-95">ENVIAR</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="install-message-box" class="fixed inset-0 bg-black/90 hidden justify-center items-center z-50 backdrop-blur-sm">
+        <div class="bg-dark-bg p-8 rounded-lg border-2 border-neon-blue neon-shadow-blue max-w-sm w-full mx-4 text-center">
+            <div class="text-neon-blue text-5xl mb-4">🖥️</div>
+            <h4 class="text-2xl font-rajdhani font-bold text-neon-light mb-2">Dock Pronta para Uso</h4>
+            <p class="text-white mb-6">
+                A extensão <span class="text-highlight-orange font-bold">Dash to Dock</span> foi solicitada. Prepare-se para um novo nível de produtividade!
+            </p>
+            <button class="w-full px-4 py-3 bg-neon-blue text-darkest-bg font-bold rounded-md hover:bg-neon-light transition shadow-[0_0_15px_rgba(0,191,255,0.3)]" 
+                    onclick="document.getElementById('install-message-box').classList.replace('flex', 'hidden')">
+                ENTENDIDO
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function showInstallationMessage() {
+            const msgBox = document.getElementById('install-message-box');
+            msgBox.classList.replace('hidden', 'flex');
+        }
+    </script>
+</body>
+</html>
