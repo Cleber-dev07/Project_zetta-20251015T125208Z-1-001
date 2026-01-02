@@ -20,7 +20,6 @@
     <div class="catalogo">
         <div class="item-catalogo">
             <span class="icone">🛠️</span> <span class="texto-icone">Utilitário</span>
-            
             <div class="menu-catalogo-dropdown">
                 <a href="extensed7.html">Preload</a>
                 <a href="extensed1.html">Alphabetic App Grid</a>
@@ -32,7 +31,6 @@
         
         <div class="item-catalogo">
             <span class="icone">🔧</span> <span class="texto-icone">Ferramentas</span>
-            
             <div class="menu-catalogo-dropdown">
                 <a href="extensed8.html">Freon</a>
                 <a href="extensed4.html">GSconnect</a>
@@ -41,7 +39,6 @@
         
         <div class="item-catalogo">
             <span class="icone">🖥️</span> <span class="texto-icone">Interface</span>
-            
             <div class="menu-catalogo-dropdown">
                 <a href="extensed2.html">Blur my Shell</a>
                 <a href="extensed3.html">Dash to panel</a>
@@ -51,7 +48,8 @@
             </div>
         </div>
     </div>
-    <form action="/search" method="GET" class="barra-pesquisa">
+
+    <form id="searchForm" class="barra-pesquisa" onsubmit="return false;">
         <input type="text" id="search-input" name="q" placeholder="Pesquisar no Project Zetta..." required>
         <button type="submit">🔍</button>
     </form>
@@ -101,8 +99,8 @@
         </div>
 
         <div class="bloco-download">
-            <input type="checkbox" id="versaoBeta1" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
-        <label for="versaoBeta1" class="label-download">
+            <input type="checkbox" id="versaoBeta2" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
+        <label for="versaoBeta2" class="label-download">
             <h3>Preload Speed</h3>
             <p class="textowhite">Otimza a velocidade do sistema</p>
         </label>
@@ -125,8 +123,8 @@
         </div>
 
         <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel2" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel2" class="label-download">
+            <input type="checkbox" id="versaoEstavel3" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+        <label for="versaoEstavel3" class="label-download">
             <h3>Dash to Dock</h3>
             <p class="textowhite">Coloca a barra de apps favoritos na área de trabalho</p>
         </label>
@@ -141,8 +139,8 @@
         <div class="secao-downloads-direita">
 
         <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel2" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel2" class="label-download">
+            <input type="checkbox" id="versaoEstavel4" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+        <label for="versaoEstavel4" class="label-download">
             <h3>Dash to Panel</h3>
             <p class="textowhite">Tras a dash para baixo</p>
         </label>
@@ -153,8 +151,8 @@
         </div>
         
         <div class="bloco-download">
-            <input type="checkbox" id="versaoBeta2" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
-        <label for="versaoBeta2" class="label-download">
+            <input type="checkbox" id="versaoBeta3" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
+        <label for="versaoBeta3" class="label-download">
             <h3>GSConnect</h3>
             <p class="textowhite">Permite a Sincronização do computador com o smartphone.</p>
         </label>
@@ -177,8 +175,8 @@
         </div>
 
         <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel2" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel2" class="label-download">
+            <input type="checkbox" id="versaoEstavel5" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+        <label for="versaoEstavel5" class="label-download">
             <h3>Switcher</h3>
             <p class="textowhite">Otimiza a troca de tela </p>
         </label>
@@ -189,8 +187,8 @@
         </div>
 
         <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel2" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel2" class="label-download">
+            <input type="checkbox" id="versaoEstavel6" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+        <label for="versaoEstavel6" class="label-download">
             <h3>Tactile</h3>
             <p class="textowhite">O usuário define o local das janelas dos aplicativos.</p>
         </label>
@@ -201,8 +199,8 @@
         </div>
 
         <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel2" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel2" class="label-download">
+            <input type="checkbox" id="versaoEstavel7" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+        <label for="versaoEstavel7" class="label-download">
             <h3>Arc Menu</h3>
             <p class="textowhite">Menu personalizável ao gosto do usuário</p>
         </label>
@@ -214,16 +212,16 @@
         
         </div>
     </div>
-    </form>    <div class="botao-master-wrapper">
-    <button id="masterDownloadBtn" class="link-download botao-master" type="button" disabled>
-        Baixar Selecionados (0)
-    </button>
-<br>
-<br>
+    </form>    
+
+    <div class="botao-master-wrapper">
+        <button id="masterDownloadBtn" class="link-download botao-master" type="button" disabled>
+            Baixar Selecionados (0)
+        </button>
+        <br><br>
         <a href="Historico.html" class="link-download botao-master">
             Pacotes Baixados
         </a>
-
     </div>
 </div>
     
@@ -233,6 +231,7 @@
         const checkboxes = form.querySelectorAll('input[name="download_option"]');
         const masterBtn = document.getElementById('masterDownloadBtn');
 
+        // --- LÓGICA DE DOWNLOAD ---
         function updateCount() {
             const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
             masterBtn.textContent = `Baixar Selecionados (${selectedCount})`;
@@ -248,14 +247,12 @@
                     const fileUrl = checkbox.value;
                     const nomeVersao = checkbox.nextElementSibling.querySelector('h3').innerText;
                     
-                    // Armazena as informações de cada arquivo selecionado
                     selectedItems.push({
                         titulo: nomeVersao,
                         url: fileUrl,
                         arquivo: fileUrl.split('/').pop()
                     });
                     
-                    // Executa o download imediato
                     const a = document.createElement('a');
                     a.href = fileUrl;
                     a.download = fileUrl.split('/').pop(); 
@@ -266,9 +263,8 @@
             });
 
             if (selectedItems.length > 0) {
-                // Cria um ÚNICO registro para o grupo de downloads (o "Pacote")
                 const novoPacote = {
-                    id: Date.now(), // ID único baseado no tempo
+                    id: Date.now(),
                     data: new Date().toLocaleString('pt-BR'),
                     itens: selectedItems,
                     total: selectedItems.length
@@ -277,7 +273,7 @@
                 historicoLocal.unshift(novoPacote);
                 localStorage.setItem('zettaDownloadHistory', JSON.stringify(historicoLocal));
                 
-                alert(`Iniciando o download de ${selectedItems.length} arquivos. O pacote foi salvo no histórico.`);
+                alert(`Iniciando o download de ${selectedItems.length} arquivos.`);
                 checkboxes.forEach(cb => cb.checked = false);
                 updateCount();
             }
@@ -288,9 +284,28 @@
         });
 
         updateCount();
+
+        // --- LÓGICA DE PESQUISA INTEGRADA ---
+        const searchInput = document.getElementById('search-input');
+        const blocos = document.querySelectorAll('.bloco-download');
+
+        searchInput.addEventListener('input', () => {
+            const termo = searchInput.value.toLowerCase();
+
+            blocos.forEach(bloco => {
+                // Pesquisa no H3 (Título) e no P (Descrição)
+                const titulo = bloco.querySelector('h3').innerText.toLowerCase();
+                const descricao = bloco.querySelector('.textowhite').innerText.toLowerCase();
+
+                if (titulo.includes(termo) || descricao.includes(termo)) {
+                    bloco.style.display = ""; // Mostra
+                } else {
+                    bloco.style.display = "none"; // Esconde
+                }
+            });
+        });
     });
 </script>
 
 </body>
-
 </html>
