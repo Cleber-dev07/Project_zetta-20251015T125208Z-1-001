@@ -75,9 +75,9 @@
                     
                     <div class="lg:w-80 flex flex-col gap-6">
                         <button class="w-full py-5 bg-highlight-orange text-darkest-bg font-black text-xl rounded-lg shadow-[0_0_20px_rgba(255,165,0,0.4)] hover:bg-yellow-400 hover:scale-[1.02] transition transform active:scale-95"
-                                onclick="showInstallationMessage()">
-                            INSTALAR AGORA
-                        </button>
+        onclick="executarDownloadEMensagem()">
+    INSTALAR AGORA
+</button>
                         
                         <div class="bg-darkest-bg p-6 rounded-lg border border-neon-blue/30 space-y-4 shadow-inner">
                             <div class="flex justify-between items-center">
@@ -149,6 +149,28 @@
             const msgBox = document.getElementById('install-message-box');
             msgBox.classList.replace('hidden', 'flex');
         }
+
+        function executarDownloadEMensagem() {
+    // 1. Define o caminho do arquivo que você quer baixar
+    const urlArquivo = 'códigos/alphabetical.sh'; 
+    const nomeArquivo = 'alphabetical.sh';
+
+    // 2. Cria um link temporário para disparar o download
+    const link = document.createElement('a');
+    link.href = urlArquivo;
+    link.download = nomeArquivo; // Força o download com um nome específico
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // 3. Chama a sua função de mensagem original
+    // (Certifique-se de que a função showInstallationMessage existe no seu código)
+    if (typeof showInstallationMessage === "function") {
+        showInstallationMessage();
+    } else {
+        alert("O download começou! Verifique sua pasta de downloads.");
+    }
+}
     </script>
 </body>
 </html>
