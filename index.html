@@ -5,14 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Zetta</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos para a Seção de Comunidade */
+        .divisor-secao {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, #5e5e5e, transparent);
+            margin: 40px 0;
+        }
+        .header-comunidade {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .pacote-comunitario {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444 !important;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .pacote-comunitario:hover {
+            border-color: #007bff !important;
+            transform: translateY(-5px);
+        }
+        .tag-extensao {
+            display: inline-block;
+            background: #222;
+            color: #aaa;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            margin: 3px;
+            border: 1px solid #444;
+        }
+        .acoes-pacote {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            gap: 10px;
+        }
+        .votos {
+            display: flex;
+            gap: 5px;
+        }
+        .btn-voto {
+            background: #333;
+            border: 1px solid #444;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: 0.2s;
+        }
+        .btn-voto:hover { background: #444; }
+        .btn-remover {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .btn-remover:hover { background: #c82333; }
+        .botao-master-wrapper {
+            text-align: center;
+            padding: 40px 0;
+        }
+        .secao-comunidade-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
 <div class="inicio">
     <div class="header-conteudo">
         <div class="titulo-texto">
-            <h1>
-                <span class="primeira-letra">P</span>roject
-            </h1>
+            <h1><span class="primeira-letra">P</span>roject</h1>
             <h1 class="position">Zetta</h1>
         </div>
     </div>
@@ -28,7 +108,6 @@
                 <a href="extensed11.html">Tactile</a>
             </div>
         </div>
-        
         <div class="item-catalogo">
             <span class="icone">🔧</span> <span class="texto-icone">Ferramentas</span>
             <div class="menu-catalogo-dropdown">
@@ -36,7 +115,6 @@
                 <a href="extensed4.html">GSconnect</a>
             </div>
         </div>
-        
         <div class="item-catalogo">
             <span class="icone">🖥️</span> <span class="texto-icone">Interface</span>
             <div class="menu-catalogo-dropdown">
@@ -53,263 +131,347 @@
         <input type="text" id="search-input" name="q" placeholder="Pesquisar no Project Zetta..." required>
         <button type="submit">🔍</button>
     </form>
-
-    <a href="Login.html">
-    <img src="userphoto.png" alt="Fazer Login" width="33px"> 
-</a>
-
 </div>
 
 <div class="conteudo-principal">
-    
     <form id="downloadForm">
-    <div class="container-colunas"> 
-        <div class="secao-downloads">
-        
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel1" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel1" class="label-download">
-            <h3>Alphabetical App Grid</h3>
-            <p class="textowhite">Organiza os apps em ordem alfabetica</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/beta-1.1.0.zip" class="link-download" download="">Download</a>
-            <a href="extensed1.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-        
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoBeta1" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
-        <label for="versaoBeta1" class="label-download">
-            <h3>Blur my Shell</h3>
-            <p class="textowhite">Aplica um efeito de desfoque em elementos da interface.</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/beta-1.1.0.zip" class="link-download" download="">Download</a>
-            <a href="extensed2.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-        
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoCLI1" name="download_option" value="assets/cli-latest.tar" class="checkbox-custom">
-        <label for="versaoCLI1" class="label-download">
-            <h3>Caffeine</h3>
-            <p class="textowhite">Não pemite que o computador entre em modo de suspensão.</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/cli-latest.tar" class="link-download" download="">Download</a>
-            <a href="extensed5.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
+        <div class="container-colunas"> 
+            <div class="secao-downloads">
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext1" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
+                    <label for="ext1" class="label-download">
+                        <h3>Alphabetical App Grid</h3>
+                        <p class="textowhite">Organiza os apps em ordem alfabetica</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/beta-1.1.0.zip" class="link-download" download>Download</a>
+                        <a href="extensed1.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext2" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
+                    <label for="ext2" class="label-download">
+                        <h3>Blur my Shell</h3>
+                        <p class="textowhite">Aplica um efeito de desfoque na interface.</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/beta-1.1.0.zip" class="link-download" download>Download</a>
+                        <a href="extensed2.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext5" name="download_option" value="assets/cli-latest.tar" class="checkbox-custom">
+                    <label for="ext5" class="label-download">
+                        <h3>Caffeine</h3>
+                        <p class="textowhite">Não permite que o computador entre em suspensão.</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/cli-latest.tar" class="link-download" download>Download</a>
+                        <a href="extensed5.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext7" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
+                    <label for="ext7" class="label-download">
+                        <h3>Preload Speed</h3>
+                        <p class="textowhite">Otimiza a velocidade do sistema</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/beta-1.1.0.zip" class="link-download" download>Download</a>
+                        <a href="extensed7.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext8" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+                    <label for="ext8" class="label-download">
+                        <h3>Freon</h3>
+                        <p class="textowhite">Monitoramento das condições do hardware.</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/stable-1.0.2.zip" class="link-download" download>Download</a>
+                        <a href="extensed8.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext9" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+                    <label for="ext9" class="label-download">
+                        <h3>Dash to Dock</h3>
+                        <p class="textowhite">Barra de favoritos na área de trabalho</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/stable-1.0.2.zip" class="link-download" download>Download</a>
+                        <a href="extensed9.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoBeta2" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
-        <label for="versaoBeta2" class="label-download">
-            <h3>Preload Speed</h3>
-            <p class="textowhite">Otimza a velocidade do sistema</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/beta-1.1.0.zip" class="link-download" download="">Download</a>
-            <a href="extensed7.html" class="link-download link-detalhes">Ver Detalhes</a>
+            <div class="secao-downloads-direita">
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext3" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+                    <label for="ext3" class="label-download">
+                        <h3>Dash to Panel</h3>
+                        <p class="textowhite">Tras a dash para baixo</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/stable-1.0.2.zip" class="link-download" download>Download</a>
+                        <a href="extensed3.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext4" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
+                    <label for="ext4" class="label-download">
+                        <h3>GSConnect</h3>
+                        <p class="textowhite">Sincronização com smartphone.</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/beta-1.1.0.zip" class="link-download" download="">Download</a>
+                        <a href="extensed4.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext6" name="download_option" value="assets/cli-latest.tar" class="checkbox-custom">
+                    <label for="ext6" class="label-download">
+                        <h3>User Themes</h3>
+                        <p class="textowhite">Possibilita alterar o visual da interface.</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/cli-latest.tar" class="link-download" download>Download</a>
+                        <a href="extensed6.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext10" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+                    <label for="ext10" class="label-download">
+                        <h3>Switcher</h3>
+                        <p class="textowhite">Otimiza a troca de tela </p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/stable-1.0.2.zip" class="link-download" download>Download</a>
+                        <a href="extensed10.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext11" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+                    <label for="ext11" class="label-download">
+                        <h3>Tactile</h3>
+                        <p class="textowhite">Define o local das janelas dos apps.</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/stable-1.0.2.zip" class="link-download" download="">Download</a>
+                        <a href="extensed11.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="bloco-download">
+                    <input type="checkbox" id="ext12" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
+                    <label for="ext12" class="label-download">
+                        <h3>Arc Menu</h3>
+                        <p class="textowhite">Menu personalizável ao gosto do usuário</p>
+                    </label>
+                    <div class="botoes-acao">
+                        <a href="assets/stable-1.0.2.zip" class="link-download" download>Download</a>
+                        <a href="extensed12.html" class="link-download link-detalhes">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel2" name="download_option" value="" class="checkbox-custom">
-        <label for="versaoEstavel2" class="label-download">
-            <h3>Freon</h3>
-            <p class="textowhite">Cria um painel de monitoramento para vizualizar as condições do computador.</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/stable-1.0.2.zip" class="link-download" download="">Download</a>
-            <a href="extensed8.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel3" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel3" class="label-download">
-            <h3>Dash to Dock</h3>
-            <p class="textowhite">Coloca a barra de apps favoritos na área de trabalho</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/stable-1.0.2.zip" class="link-download" download="">Download</a>
-            <a href="extensed9.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-
-        </div>
-
-        <div class="secao-downloads-direita">
-
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel4" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel4" class="label-download">
-            <h3>Dash to Panel</h3>
-            <p class="textowhite">Tras a dash para baixo</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/stable-1.0.2.zip" class="link-download" download="">Download</a>
-            <a href="extensed3.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-        
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoBeta3" name="download_option" value="assets/beta-1.1.0.zip" class="checkbox-custom">
-        <label for="versaoBeta3" class="label-download">
-            <h3>GSConnect</h3>
-            <p class="textowhite">Permite a Sincronização do computador com o smartphone.</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/beta-1.1.0.zip" class="link-download" download="">Download</a>
-            <a href="extensed4.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-        
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoCLI2" name="download_option" value="assets/cli-latest.tar" class="checkbox-custom">
-        <label for="versaoCLI2" class="label-download">
-            <h3>User Themes</h3>
-            <p class="textowhite">Possibilita alterar o visual da interface.</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/cli-latest.tar" class="link-download" download="">Download</a>
-            <a href="extensed6.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel5" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel5" class="label-download">
-            <h3>Switcher</h3>
-            <p class="textowhite">Otimiza a troca de tela </p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/stable-1.0.2.zip" class="link-download" download="">Download</a>
-            <a href="extensed10.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel6" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel6" class="label-download">
-            <h3>Tactile</h3>
-            <p class="textowhite">O usuário define o local das janelas dos aplicativos.</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/stable-1.0.2.zip" class="link-download" download="">Download</a>
-            <a href="extensed11.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-
-        <div class="bloco-download">
-            <input type="checkbox" id="versaoEstavel7" name="download_option" value="assets/stable-1.0.2.zip" class="checkbox-custom">
-        <label for="versaoEstavel7" class="label-download">
-            <h3>Arc Menu</h3>
-            <p class="textowhite">Menu personalizável ao gosto do usuário</p>
-        </label>
-        <div class="botoes-acao">
-            <a href="assets/stable-1.0.2.zip" class="link-download" download="">Download</a>
-            <a href="extensed12.html" class="link-download link-detalhes">Ver Detalhes</a>
-        </div>
-        </div>
-        
-        </div>
-    </div>
-    </form>    
+    </form>
 
     <div class="botao-master-wrapper">
         <button id="masterDownloadBtn" class="link-download botao-master" type="button" disabled>
             Baixar Selecionados (0)
         </button>
+        <button id="btnCompartilhar" class="link-download botao-master" style="background-color: #28a745; margin-left: 10px;">
+            Compartilhar Seleção
+        </button>
         <br><br>
-        <a href="Historico.html" class="link-download botao-master">
-            Pacotes Baixados
-        </a>
+        <a href="Historico.html" class="link-download botao-master">Pacotes Baixados</a>
+    </div>
+
+    <hr class="divisor-secao">
+
+    <div class="comunidade-pacotes">
+        <div class="header-comunidade">
+            <h2>📦 Pacotes da Comunidade</h2>
+            <p>Combine extensões e compartilhe com outros usuários!</p>
+        </div>
+        <div id="listaPacotesComunidade" class="secao-comunidade-container">
+            </div>
     </div>
 </div>
-    
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('downloadForm');
-        const checkboxes = form.querySelectorAll('input[name="download_option"]');
+        const checkboxes = document.querySelectorAll('input[name="download_option"]');
         const masterBtn = document.getElementById('masterDownloadBtn');
-
-        // --- LÓGICA DE DOWNLOAD ---
-        function updateCount() {
-            const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
-            masterBtn.textContent = `Baixar Selecionados (${selectedCount})`;
-            masterBtn.disabled = selectedCount === 0; 
-        }
-
-        masterBtn.addEventListener('click', () => {
-            const selectedItems = [];
-            const historicoLocal = JSON.parse(localStorage.getItem('zettaDownloadHistory')) || [];
-
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    const fileUrl = checkbox.value;
-                    const nomeVersao = checkbox.nextElementSibling.querySelector('h3').innerText;
-                    
-                    selectedItems.push({
-                        titulo: nomeVersao,
-                        url: fileUrl,
-                        arquivo: fileUrl.split('/').pop()
-                    });
-                    
-                    const a = document.createElement('a');
-                    a.href = fileUrl;
-                    a.download = fileUrl.split('/').pop(); 
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a); 
-                }
-            });
-
-            if (selectedItems.length > 0) {
-                const novoPacote = {
-                    id: Date.now(),
-                    data: new Date().toLocaleString('pt-BR'),
-                    itens: selectedItems,
-                    total: selectedItems.length
-                };
-
-                historicoLocal.unshift(novoPacote);
-                localStorage.setItem('zettaDownloadHistory', JSON.stringify(historicoLocal));
-                
-                alert(`Iniciando o download de ${selectedItems.length} arquivos.`);
-                checkboxes.forEach(cb => cb.checked = false);
-                updateCount();
-            }
-        });
-
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', updateCount);
-        });
-
-        updateCount();
-
-        // --- LÓGICA DE PESQUISA INTEGRADA ---
+        const btnCompartilhar = document.getElementById('btnCompartilhar');
+        const listaComunidade = document.getElementById('listaPacotesComunidade');
         const searchInput = document.getElementById('search-input');
         const blocos = document.querySelectorAll('.bloco-download');
 
-        searchInput.addEventListener('input', () => {
-            const termo = searchInput.value.toLowerCase();
+        // --- 1. CONTADOR ---
+        function updateCount() {
+            const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            masterBtn.textContent = `Baixar Selecionados (${selectedCount})`;
+            masterBtn.disabled = selectedCount === 0;
+        }
+        checkboxes.forEach(cb => cb.addEventListener('change', updateCount));
 
-            blocos.forEach(bloco => {
-                // Pesquisa no H3 (Título) e no P (Descrição)
-                const titulo = bloco.querySelector('h3').innerText.toLowerCase();
-                const descricao = bloco.querySelector('.textowhite').innerText.toLowerCase();
-
-                if (titulo.includes(termo) || descricao.includes(termo)) {
-                    bloco.style.display = ""; // Mostra
-                } else {
-                    bloco.style.display = "none"; // Esconde
+        // --- 2. DOWNLOAD MASTER ---
+        masterBtn.addEventListener('click', () => {
+            const selectedItems = [];
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    const url = cb.value;
+                    const titulo = cb.nextElementSibling.querySelector('h3').innerText;
+                    selectedItems.push({ titulo, url });
+                    baixar(url);
                 }
             });
+            salvarHistorico(selectedItems);
+            alert("Iniciando downloads...");
         });
+
+        // --- 3. COMPARTILHAR ---
+        btnCompartilhar.addEventListener('click', () => {
+            const selecionados = Array.from(checkboxes).filter(cb => cb.checked);
+            if (selecionados.length === 0) return alert("Selecione itens primeiro!");
+
+            const nome = prompt("Nome do seu pacote:");
+            if (!nome) return;
+
+            const novoPacote = {
+                id: Date.now(),
+                autor: nome,
+                itens: selecionados.map(cb => ({
+                    titulo: cb.nextElementSibling.querySelector('h3').innerText,
+                    url: cb.value
+                })),
+                likes: 0,
+                dislikes: 0
+            };
+
+            const comunidade = JSON.parse(localStorage.getItem('zettaComunidade')) || [];
+            comunidade.unshift(novoPacote);
+            localStorage.setItem('zettaComunidade', JSON.stringify(comunidade));
+            renderizarComunidade();
+        });
+
+        // --- 4. RENDERIZAR COMUNIDADE (Com Voto Inteligente) ---
+        function renderizarComunidade() {
+            const dados = JSON.parse(localStorage.getItem('zettaComunidade')) || [];
+            const meusVotos = JSON.parse(localStorage.getItem('zettaMeusVotos')) || {};
+            listaComunidade.innerHTML = '';
+
+            dados.forEach(p => {
+                const div = document.createElement('div');
+                div.className = 'pacote-comunitario';
+                const tags = p.itens.map(i => `<span class="tag-extensao">${i.titulo}</span>`).join('');
+                
+                // Destaque visual para o botão clicado
+                const estiloLike = meusVotos[p.id] === 'like' ? "background-color: #28a745; border-color: #28a745;" : "";
+                const estiloDislike = meusVotos[p.id] === 'dislike' ? "background-color: #dc3545; border-color: #dc3545;" : "";
+
+                div.innerHTML = `
+                    <div>
+                        <h3>📦 ${p.autor}</h3>
+                        <div>${tags}</div>
+                    </div>
+                    <div>
+                        <div class="acoes-pacote">
+                            <div class="votos">
+                                <button class="btn-voto" style="${estiloLike}" onclick="votar('${p.id}', 'like')">👍 ${p.likes || 0}</button>
+                                <button class="btn-voto" style="${estiloDislike}" onclick="votar('${p.id}', 'dislike')">👎 ${p.dislikes || 0}</button>
+                            </div>
+                            <button class="btn-remover" onclick="removerPacote('${p.id}')">Excluir</button>
+                        </div>
+                        <br>
+                        <button class="link-download" onclick="baixarTudo('${p.id}')" style="width:100%">Baixar Pacote</button>
+                    </div>
+                `;
+                listaComunidade.appendChild(div);
+            });
+        }
+
+        // --- 5. FUNÇÕES GLOBAIS (Voto, Remover, Baixar) ---
+        window.votar = function(id, tipo) {
+            let dados = JSON.parse(localStorage.getItem('zettaComunidade')) || [];
+            let meusVotos = JSON.parse(localStorage.getItem('zettaMeusVotos')) || {};
+            
+            const index = dados.findIndex(p => p.id == id);
+            if (index === -1) return;
+
+            const votoAnterior = meusVotos[id];
+
+            if (votoAnterior === tipo) {
+                // Retirar voto
+                if (tipo === 'like') dados[index].likes--;
+                else dados[index].dislikes--;
+                delete meusVotos[id];
+            } else if (votoAnterior) {
+                // Trocar voto
+                if (tipo === 'like') {
+                    dados[index].likes++;
+                    dados[index].dislikes--;
+                } else {
+                    dados[index].dislikes++;
+                    dados[index].likes--;
+                }
+                meusVotos[id] = tipo;
+            } else {
+                // Novo voto
+                if (tipo === 'like') dados[index].likes++;
+                else dados[index].dislikes++;
+                meusVotos[id] = tipo;
+            }
+
+            localStorage.setItem('zettaComunidade', JSON.stringify(dados));
+            localStorage.setItem('zettaMeusVotos', JSON.stringify(meusVotos));
+            renderizarComunidade();
+        };
+
+        window.removerPacote = function(id) {
+            if (confirm("Deseja excluir este pacote da comunidade?")) {
+                let dados = JSON.parse(localStorage.getItem('zettaComunidade')) || [];
+                dados = dados.filter(p => p.id != id);
+                localStorage.setItem('zettaComunidade', JSON.stringify(dados));
+                renderizarComunidade();
+            }
+        };
+
+        window.baixarTudo = function(id) {
+            const dados = JSON.parse(localStorage.getItem('zettaComunidade')) || [];
+            const pacote = dados.find(p => p.id == id);
+            if (pacote) {
+                pacote.itens.forEach(i => baixar(i.url));
+            }
+        };
+
+        function baixar(url) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = url.split('/').pop();
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function salvarHistorico(itens) {
+            const hist = JSON.parse(localStorage.getItem('zettaDownloadHistory')) || [];
+            hist.unshift({ id: Date.now(), data: new Date().toLocaleString(), itens, total: itens.length });
+            localStorage.setItem('zettaDownloadHistory', JSON.stringify(hist));
+        }
+
+        // --- 6. PESQUISA ---
+        searchInput.addEventListener('input', () => {
+            const t = searchInput.value.toLowerCase();
+            blocos.forEach(b => {
+                const txt = b.innerText.toLowerCase();
+                b.style.display = txt.includes(t) ? "" : "none";
+            });
+        });
+
+        renderizarComunidade();
     });
 </script>
-
 </body>
 </html>
