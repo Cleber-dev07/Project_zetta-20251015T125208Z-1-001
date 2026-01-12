@@ -325,7 +325,6 @@
         masterBtn.addEventListener('click', async () => {
             const selectedCheckboxes = Array.from(checkboxes).filter(cb => cb.checked);
             
-            // Cabeçalho do script mestre
             let masterScriptContent = "#!/bin/bash\n";
             masterScriptContent += "# Script Mestre - Project Zetta\n";
             masterScriptContent += "# Gerado em: " + new Date().toLocaleString() + "\n\n";
@@ -333,7 +332,6 @@
 
             const selectedItemsForHistory = [];
 
-            // Loop para buscar o conteúdo de cada script .sh
             for (const cb of selectedCheckboxes) {
                 const bloco = cb.closest('.bloco-download');
                 const scriptUrl = bloco.querySelector('a.link-download:not(.link-detalhes)').getAttribute('href');
@@ -342,7 +340,6 @@
                 selectedItemsForHistory.push({ titulo, url: scriptUrl });
 
                 try {
-                    // Busca o conteúdo de texto do arquivo .sh
                     const response = await fetch(scriptUrl);
                     if (!response.ok) throw new Error();
                     const text = await response.text();
@@ -350,31 +347,17 @@
                     masterScriptContent += `\n# --- Início de: ${titulo} ---\n`;
                     masterScriptContent += text + "\n";
                     masterScriptContent += `\n# --- Fim de: ${titulo} ---\n`;
-                    
                 } catch (err) {
-                    console.error("Erro ao ler o script:", scriptUrl);
                     masterScriptContent += `\n# ERRO: Não foi possível carregar o script de ${titulo}\n`;
                 }
             }
 
             masterScriptContent += "\necho 'Todos os processos foram concluídos!'\n";
-
-            // Criação do arquivo para download (Blob)
-            const blob = new Blob([masterScriptContent], { type: 'text/x-shellscript' });
-            const blobUrl = URL.createObjectURL(blob);
-            
-            const tempLink = document.createElement('a');
-            tempLink.href = blobUrl;
-            tempLink.download = "zetta_master_install.sh"; // Nome do arquivo único
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
-            URL.revokeObjectURL(blobUrl);
-
+            gerarDownloadArquivo(masterScriptContent, "zetta_master_install.sh");
             salvarHistorico(selectedItemsForHistory);
         });
 
-        // --- 3. COMPARTILHAR --- (Mantido conforme original)
+        // --- 3. COMPARTILHAR (Ajustado para salvar o link do .sh) ---
         btnCompartilhar.addEventListener('click', () => {
             const selecionados = Array.from(checkboxes).filter(cb => cb.checked);
             if (selecionados.length === 0) return alert("Selecione itens primeiro!");
@@ -385,10 +368,14 @@
             const novoPacote = {
                 id: Date.now(),
                 autor: nome,
-                itens: selecionados.map(cb => ({
-                    titulo: cb.nextElementSibling.querySelector('h3').innerText,
-                    url: cb.value
-                })),
+                itens: selecionados.map(cb => {
+                    const bloco = cb.closest('.bloco-download');
+                    return {
+                        titulo: bloco.querySelector('h3').innerText,
+                        // Pega o href do link de download (.sh) em vez do value do checkbox (.zip)
+                        url: bloco.querySelector('a.link-download:not(.link-detalhes)').getAttribute('href')
+                    };
+                }),
                 likes: 0,
                 dislikes: 0
             };
@@ -435,6 +422,50 @@
         }
 
         // --- 5. FUNÇÕES GLOBAIS ---
+        
+        // Versão Master do download para pacotes da comunidade
+        window.baixarTudo = async function(id) {
+            const dados = JSON.parse(localStorage.getItem('zettaComunidade')) || [];
+            const pacote = dados.find(p => p.id == id);
+            
+            if (!pacote) return;
+
+            let masterContent = "#!/bin/bash\n";
+            masterContent += `# Pacote Comunitário: ${pacote.autor}\n\n`;
+
+            for (const item of pacote.itens) {
+                try {
+                    const response = await fetch(item.url);
+                    const text = await response.text();
+                    masterContent += `\n# --- ${item.titulo} ---\n${text}\n`;
+                } catch (err) {
+                    masterContent += `\n# Erro ao carregar ${item.titulo}\n`;
+                }
+            }
+
+            gerarDownloadArquivo(masterContent, `pacote_${pacote.autor.replace(/\s+/g, '_')}.sh`);
+            // Opcional: Salva no histórico também ao baixar pacote da comunidade
+            salvarHistorico(pacote.itens);
+        };
+
+        function gerarDownloadArquivo(conteudo, nomeArquivo) {
+            const blob = new Blob([conteudo], { type: 'text/x-shellscript' });
+            const blobUrl = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = nomeArquivo;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(blobUrl);
+        }
+
+        function salvarHistorico(itens) {
+            const hist = JSON.parse(localStorage.getItem('zettaDownloadHistory')) || [];
+            hist.unshift({ id: Date.now(), data: new Date().toLocaleString(), itens, total: itens.length });
+            localStorage.setItem('zettaDownloadHistory', JSON.stringify(hist));
+        }
+
         window.votar = function(id, tipo) {
             let dados = JSON.parse(localStorage.getItem('zettaComunidade')) || [];
             let meusVotos = JSON.parse(localStorage.getItem('zettaMeusVotos')) || {};
@@ -469,30 +500,6 @@
                 renderizarComunidade();
             }
         };
-
-        window.baixarTudo = function(id) {
-            const dados = JSON.parse(localStorage.getItem('zettaComunidade')) || [];
-            const pacote = dados.find(p => p.id == id);
-            if (pacote) {
-                // Aqui você também poderia gerar um master script para pacotes da comunidade
-                pacote.itens.forEach(i => baixar(i.url));
-            }
-        };
-
-        function baixar(url) {
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = url.split('/').pop();
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-
-        function salvarHistorico(itens) {
-            const hist = JSON.parse(localStorage.getItem('zettaDownloadHistory')) || [];
-            hist.unshift({ id: Date.now(), data: new Date().toLocaleString(), itens, total: itens.length });
-            localStorage.setItem('zettaDownloadHistory', JSON.stringify(hist));
-        }
 
         // --- 6. PESQUISA ---
         searchInput.addEventListener('input', () => {

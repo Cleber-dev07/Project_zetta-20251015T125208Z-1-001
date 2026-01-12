@@ -92,22 +92,53 @@
     </footer>
 
     <script>
-    // Função para baixar todos os arquivos de um pacote específico
-    function downloadPacoteNovamente(id) {
+    // Função para baixar todos os arquivos de um pacote específico combinados em um só
+    async function downloadPacoteNovamente(id) {
         const historico = JSON.parse(localStorage.getItem('zettaDownloadHistory')) || [];
         const pacote = historico.find(p => p.id === id);
         
-        if (pacote && pacote.itens) {
-            pacote.itens.forEach(item => {
-                const a = document.createElement('a');
-                a.href = item.url;
-                a.download = item.arquivo;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            });
-            alert(`Reiniciando download de ${pacote.itens.length} arquivos.`);
+        if (!pacote || !pacote.itens) return;
+
+        // Início do Script Mestre
+        let masterScriptContent = "#!/bin/bash\n";
+        masterScriptContent += "# Script Mestre Restaurado - Project Zetta\n";
+        masterScriptContent += "# Sessão original de: " + pacote.data + "\n\n";
+        masterScriptContent += "echo 'Restaurando e instalando pacote do histórico...'\n\n";
+
+        // Notificar usuário (opcional, já que fetch pode demorar um pouco)
+        console.log("Preparando download combinado...");
+
+        for (const item of pacote.itens) {
+            try {
+                // Busca o conteúdo do script .sh usando a URL salva no histórico
+                const response = await fetch(item.url);
+                if (!response.ok) throw new Error();
+                const text = await response.text();
+                
+                masterScriptContent += `\n# --- Início de: ${item.titulo} ---\n`;
+                masterScriptContent += text + "\n";
+                masterScriptContent += `\n# --- Fim de: ${item.titulo} ---\n`;
+            } catch (err) {
+                console.error("Erro ao recuperar script:", item.url);
+                masterScriptContent += `\n# ERRO: Não foi possível recuperar o script de ${item.titulo}\n`;
+            }
         }
+
+        masterScriptContent += "\necho 'Instalação do pacote de histórico concluída!'\n";
+
+        // Geração do arquivo Blob para download
+        const blob = new Blob([masterScriptContent], { type: 'text/x-shellscript' });
+        const blobUrl = URL.createObjectURL(blob);
+        
+        const tempLink = document.createElement('a');
+        tempLink.href = blobUrl;
+        tempLink.download = `zetta_restaurado_${id}.sh`;
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+        URL.revokeObjectURL(blobUrl);
+
+        alert(`O pacote com ${pacote.total} itens foi combinado e o download iniciado.`);
     }
 
     function renderHistory() {
@@ -131,7 +162,6 @@
             const card = document.createElement('div');
             card.className = 'bg-dark-bg p-6 rounded-xl neon-border-blue/30 hover:neon-border-blue hover-glow transition duration-300 flex flex-col justify-between h-full group';
             
-            // Cria a lista visual dos nomes dos arquivos no card
             const listaNomes = pacote.itens.map(i => i.titulo).join(', ');
 
             card.innerHTML = `
