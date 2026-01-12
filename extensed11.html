@@ -151,11 +151,17 @@
         </div>
     </div>
 
-    <script>
+   <script>
         function showInstallationMessage() {
-            const msgBox = document.getElementById('install-message-box');
-            msgBox.classList.replace('hidden', 'flex');
-        }
+    const msgBox = document.getElementById('install-message-box');
+    msgBox.classList.replace('hidden', 'flex');
+
+    // Cria um link temporário para disparar o download
+    const link = document.createElement('a');
+    link.href = 'códigos/instalar-tactile.sh'; // Coloque o link do arquivo aqui
+    link.download = 'instalar-tactile.zip'; // Nome que o arquivo terá
+    link.click();
+}
 
         function addComment() {
             const input = document.getElementById('comment-input');
