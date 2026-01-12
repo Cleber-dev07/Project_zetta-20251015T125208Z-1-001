@@ -552,3 +552,60 @@ body{
 }
 
 .btn-remover:hover { background: #c82333; }
+
+/* --- CSS do Header com Imagem e Zoom --- */
+
+/* Layout Flex para Título + Imagem */
+.card-header-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.header-text-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Estilo da Moldura da Imagem */
+.header-image-wrapper {
+    width: 100%;
+    height: 200px; /* Altura no celular */
+    border-radius: 0.5rem;
+    overflow: hidden; /* Corta o excesso da imagem no zoom */
+    position: relative;
+    border: 1px solid #00BFFF; /* Azul Neon */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+
+/* Estilo da Imagem em si */
+.header-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Preenche sem distorcer */
+    transition: transform 0.7s;
+}
+
+/* Efeito de Zoom ao passar o mouse */
+.header-image-wrapper:hover .header-img {
+    transform: scale(1.1);
+}
+
+/* Ajustes para Desktop (PC) */
+@media (min-width: 768px) {
+    .card-header-flex {
+        flex-direction: row; /* Coloca lado a lado */
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header-image-wrapper {
+        width: 50%; /* Imagem ocupa metade */
+        height: 250px;
+        flex-shrink: 0;
+    }
+    .header-text-area {
+        padding-right: 2rem;
+    }
+}

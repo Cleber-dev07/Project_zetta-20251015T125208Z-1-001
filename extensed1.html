@@ -36,6 +36,63 @@
         .neon-border-blue {
             border: 1px solid #00BFFF;
         }
+
+        /* --- Adicione dentro da tag <style> --- */
+
+/* Layout Flex para Título + Imagem */
+.card-header-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.header-text-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Estilo da Moldura da Imagem */
+.header-image-wrapper {
+    width: 100%;
+    height: 200px; /* Altura no celular */
+    border-radius: 0.5rem;
+    overflow: hidden; /* Corta o excesso da imagem no zoom */
+    position: relative;
+    border: 1px solid #00BFFF; /* Azul Neon */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+
+/* Estilo da Imagem em si */
+.header-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Preenche sem distorcer */
+    transition: transform 0.7s;
+}
+
+/* Efeito de Zoom ao passar o mouse */
+.header-image-wrapper:hover .header-img {
+    transform: scale(1.1);
+}
+
+/* Ajustes para Desktop (PC) */
+@media (min-width: 768px) {
+    .card-header-flex {
+        flex-direction: row; /* Coloca lado a lado */
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header-image-wrapper {
+        width: 50%; /* Imagem ocupa metade */
+        height: 250px;
+        flex-shrink: 0;
+    }
+    .header-text-area {
+        padding-right: 2rem;
+    }
+}
     </style>
 </head>
 <body class="min-h-screen text-gray-100 p-4 md:p-8">
@@ -55,10 +112,20 @@
     <main class="max-w-6xl mx-auto">
         <section class="space-y-8">
             <div class="bg-dark-bg p-6 md:p-10 rounded-xl neon-border-blue neon-shadow-blue">
-                <div class="border-b border-neon-blue/20 pb-6 mb-6">
-                    <h2 class="text-4xl md:text-6xl font-rajdhani font-bold text-neon-light">Alphabetical App Grid</h2>
-                    <p class="text-highlight-orange font-bold tracking-widest uppercase text-sm mt-2">Gnome Shell Extension</p>
-                </div>
+                <div class="border-b border-neon-blue/20 pb-6 mb-6 card-header-flex">
+    
+    <div class="header-text-area">
+        <h2 class="text-4xl md:text-6xl font-rajdhani font-bold text-neon-light">Alphabetical App Grid</h2>
+        <p class="text-highlight-orange font-bold tracking-widest uppercase text-sm mt-2">Gnome Shell Extension</p>
+    </div>
+
+    <div class="header-image-wrapper">
+        <img src="https://extensions.gnome.org/extension-data/screenshots/screenshot_4269_y90uURn.png" 
+             alt="Preview do Alphabetical App Grid" 
+             class="header-img">
+    </div>
+
+</div>
                 
                 <div class="flex flex-col lg:flex-row gap-10">
                     <div class="flex-1">
