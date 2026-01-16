@@ -1,16 +1,24 @@
 #!/bin/bash
-# Script para instalar GNOME Tweaks, gnome-extensions-cli e extensões no Debian
 
-# Atualiza pacotes e instala dependências
-sudo apt update && sudo apt install -y gnome-tweaks python3-pip git
+# Aborta o script em caso de erro
+set -e
 
-# Instala o gnome-extensions-cli via pip
-pip3 install --user gnome-extensions-cli
 
-# Adiciona o diretório do pip ao PATH (se ainda não estiver)
-export PATH=$PATH:$HOME/.local/bin
 
-# Instala extensões GNOME
+# 1. Atualiza pacotes e instala dependências e o GNOME Tweaks
+sudo apt update
+sudo apt install pipx python3-pip libglib2.0-bin gnome-tweaks -y
+
+# 2. Instala o gnome-extensions-cli via pipx
+# Usamos --force para garantir que ele sobrescreva se houver instalação parcial
+pipx install gnome-extensions-cli --system-site-packages --force
+
+# 3. Garante que o diretório do pipx esteja no PATH para esta execução
+export PATH="$HOME/.local/bin:$PATH"
+
+# 4. Instala extensões GNOME
+# Nota: A extensão pode exigir que você reinicie a sessão (Log out/Log in) para aparecer
+echo "📦 Instalando extensões..."
 gnome-extensions-cli install user-theme@gnome-shell-extensions.gcampax.github.com
 
 echo "✅ Instalação concluída!"
