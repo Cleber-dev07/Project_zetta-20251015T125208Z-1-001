@@ -122,20 +122,27 @@
                 </h3>
                 
                 <div class="space-y-8">
+                
+                <div id="comments-list" class="space-y-6">
+                    
                     <div class="bg-black/20 p-5 rounded-lg border-l-4 border-neon-blue">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="text-sm font-bold text-neon-light">Mobile_PowerUser</span>
-                            <span class="text-[10px] text-gray-500 uppercase tracking-widest">4 dias atrás</span>
+                            <span class="text-sm font-bold text-neon-light">Gnome_User</span>
+                            <span class="text-[10px] text-gray-500 uppercase">2 dias atrás</span>
                         </div>
-                        <p class="text-gray-300">"A melhor forma de integrar Android e Linux. Enviar arquivos e responder SMS pelo teclado é um ganho imenso de produtividade."</p>
+                        <p class="text-gray-300">"Funciona perfeitamente, obrigado!"</p>
                     </div>
-                    
-                    <div class="pt-6 border-t border-white/5">
-                        <h4 class="text-white mb-4 font-bold text-sm uppercase tracking-wider">Deixe seu Comentário</h4>
-                        <textarea class="w-full p-4 bg-darkest-bg border border-neon-blue/20 rounded-md text-white placeholder-gray-600 focus:border-neon-blue focus:ring-1 focus:ring-neon-blue outline-none transition-all" rows="3" placeholder="Sua opinião ajuda a comunidade..."></textarea>
-                        <button class="mt-4 px-8 py-2 bg-neon-blue text-darkest-bg font-bold rounded-md hover:bg-neon-light transition-all shadow-lg active:scale-95">ENVIAR</button>
-                    </div>
+
                 </div>
+                
+                <div class="pt-6 border-t border-white/5">
+                    <h4 class="text-white mb-4 font-bold text-sm uppercase">Deixe seu Comentário</h4>
+                    
+                    <textarea id="comment-input" class="w-full p-4 bg-darkest-bg border border-neon-blue/20 rounded-md text-white focus:border-neon-blue focus:ring-1 focus:ring-neon-blue outline-none transition-all" rows="3" placeholder="Sua opinião..."></textarea>
+                    
+                    <button onclick="addComment()" class="mt-4 px-8 py-2 bg-neon-blue text-darkest-bg font-bold rounded-md hover:bg-neon-light transition-all shadow-lg active:scale-95">ENVIAR</button>
+                </div>
+            </div>
             </div>
         </section>
     </main>
@@ -165,6 +172,27 @@
     link.download = 'instalar-gsconnect.sh'; // Nome que o arquivo terá
     link.click();
 }
+
+function addComment() {
+            const input = document.getElementById('comment-input');
+            const list = document.getElementById('comments-list');
+            
+            if (input.value.trim() === "") return;
+
+            const newComment = document.createElement('div');
+            newComment.className = "bg-black/20 p-5 rounded-lg border-l-4 border-highlight-orange animate-pulse";
+            newComment.innerHTML = `
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-bold text-highlight-orange">Você (Convidado)</span>
+                    <span class="text-[10px] text-gray-500 uppercase tracking-widest">Agora mesmo</span>
+                </div>
+                <p class="text-gray-300">"${input.value}"</p>
+            `;
+
+            list.appendChild(newComment);
+            input.value = "";
+            setTimeout(() => newComment.classList.remove('animate-pulse'), 2000);
+        }
     </script>
 </body>
 </html>
